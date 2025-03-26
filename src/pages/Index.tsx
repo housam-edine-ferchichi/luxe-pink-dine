@@ -39,6 +39,30 @@ const testimonials = [
     role: 'Regular Guest',
     content: "The atmosphere is as impressive as the cuisine. I've dined at many fine establishments, but L'Élégance stands out with its perfect balance of sophistication and warmth.",
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80'
+  },
+  {
+    name: 'Antoine Moreau',
+    role: 'Gourmet Enthusiast',
+    content: "Une expérience culinaire incroyable! Les plats sont préparés avec précision et créativité. Le service est impeccable et l'ambiance élégante.",
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+  },
+  {
+    name: 'Émilie Renaud',
+    role: 'Culinary Blogger',
+    content: "J'ai adoré chaque instant passé dans ce restaurant. La fusion des saveurs traditionnelles et modernes est exceptionnelle. Un vrai délice pour les sens!",
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+  },
+  {
+    name: 'Jean-Pierre Blanc',
+    role: 'Business Executive',
+    content: "Le cadre parfait pour les réunions d'affaires. Cuisine raffinée, service discret et attentionné. Je recommande vivement pour impressionner vos clients.",
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+  },
+  {
+    name: 'Claire Dubois',
+    role: 'Local Resident',
+    content: "Un trésor caché dans notre quartier. J'y retourne régulièrement pour la qualité constante et l'accueil chaleureux. La carte des vins est particulièrement remarquable.",
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
   }
 ];
 
@@ -142,11 +166,11 @@ const Index = () => {
             </motion.div>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-50 dark:bg-midnight-900 rounded-xl p-8 shadow-lg"
+                className="bg-gray-50 dark:bg-midnight-900 rounded-xl p-8 shadow-lg h-full flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -169,11 +193,27 @@ const Index = () => {
                     </p>
                   </div>
                 </div>
-                <blockquote className="text-gray-600 dark:text-gray-300 italic">
+                <blockquote className="text-gray-600 dark:text-gray-300 italic flex-grow">
                   "{testimonial.content}"
                 </blockquote>
               </motion.div>
             ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <motion.a
+              href="/testimonials"
+              className="inline-flex items-center text-rose-500 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 font-medium transition-colors"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <span>View all reviews</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </motion.a>
           </div>
         </div>
       </section>
