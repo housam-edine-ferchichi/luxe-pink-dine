@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
+import { Wine, Utensils, CircleDot } from 'lucide-react';
 
 // Menu data
 const menuCategories = [
@@ -15,6 +16,8 @@ const menuCategories = [
         price: '€14',
         isSignature: false,
         isVegetarian: false,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
       },
       {
@@ -23,6 +26,8 @@ const menuCategories = [
         price: '€16',
         isSignature: true,
         isVegetarian: false,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1625944525533-473f1a3d54e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1546&q=80'
       },
       {
@@ -31,6 +36,8 @@ const menuCategories = [
         price: '€15',
         isSignature: false,
         isVegetarian: false,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
       },
       {
@@ -39,6 +46,8 @@ const menuCategories = [
         price: '€13',
         isSignature: false,
         isVegetarian: true,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1534533983688-c1b3cd781d14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1734&q=80'
       }
     ]
@@ -53,6 +62,8 @@ const menuCategories = [
         price: '€29',
         isSignature: true,
         isVegetarian: false,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1608039590651-5b53f4f2c3b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80'
       },
       {
@@ -61,6 +72,8 @@ const menuCategories = [
         price: '€32',
         isSignature: true,
         isVegetarian: false,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
       },
       {
@@ -69,6 +82,8 @@ const menuCategories = [
         price: '€27',
         isSignature: false,
         isVegetarian: false,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1623595119708-26b1f7500caa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80'
       },
       {
@@ -77,6 +92,8 @@ const menuCategories = [
         price: '€24',
         isSignature: false,
         isVegetarian: true,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1746&q=80'
       }
     ]
@@ -91,6 +108,8 @@ const menuCategories = [
         price: '€12',
         isSignature: true,
         isVegetarian: true,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
       },
       {
@@ -99,6 +118,8 @@ const menuCategories = [
         price: '€13',
         isSignature: false,
         isVegetarian: true,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1516717334666-8e9f2c21c702?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80'
       },
       {
@@ -107,6 +128,8 @@ const menuCategories = [
         price: '€14',
         isSignature: true,
         isVegetarian: true,
+        isHot: true,
+        isCold: false,
         image: 'https://images.unsplash.com/photo-1611329695918-1b2e40f3965d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80'
       }
     ]
@@ -121,6 +144,8 @@ const menuCategories = [
         price: '€25 (glass) / €120 (bottle)',
         isSignature: false,
         isVegetarian: true,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1546881963-ac8d67aee789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1634&q=80'
       },
       {
@@ -129,6 +154,8 @@ const menuCategories = [
         price: '€45 (glass) / €320 (bottle)',
         isSignature: true,
         isVegetarian: true,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
       },
       {
@@ -137,7 +164,29 @@ const menuCategories = [
         price: '€16',
         isSignature: true,
         isVegetarian: true,
+        isHot: false,
+        isCold: true,
         image: 'https://images.unsplash.com/photo-1556855810-ac404aa91e85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
+      },
+      {
+        name: 'Thé à la Lavande',
+        description: 'Aromatic lavender tea with honey and a hint of lemon',
+        price: '€8',
+        isSignature: false,
+        isVegetarian: true,
+        isHot: true,
+        isCold: false,
+        image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
+      },
+      {
+        name: 'Café Gourmand',
+        description: 'Espresso served with a selection of mini desserts',
+        price: '€12',
+        isSignature: false,
+        isVegetarian: true,
+        isHot: true,
+        isCold: false,
+        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
       }
     ]
   }
@@ -149,15 +198,34 @@ const Menu = () => {
   
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    // Reset filter to 'all' when category changes
+    setFilter('all');
+  }, [activeCategory]);
   
-  // Filter menu items based on selected filter
+  // Filter menu items based on selected filter and category
   const filterItems = (items) => {
     if (filter === 'all') return items;
-    if (filter === 'vegetarian') return items.filter(item => item.isVegetarian);
-    if (filter === 'signature') return items.filter(item => item.isSignature);
+    
+    // Special filters for drinks category
+    if (activeCategory === 'drinks') {
+      if (filter === 'cold') return items.filter(item => item.isCold);
+      if (filter === 'hot') return items.filter(item => item.isHot);
+    } else {
+      // Regular filters for other categories
+      if (filter === 'vegetarian') return items.filter(item => item.isVegetarian);
+      if (filter === 'signature') return items.filter(item => item.isSignature);
+    }
+    
     return items;
   };
+
+  // Get active category data
+  const getActiveCategoryData = () => {
+    return menuCategories.find(cat => cat.id === activeCategory);
+  };
+  
+  // Check if the current category is drinks
+  const isDrinksCategory = activeCategory === 'drinks';
   
   return (
     <div className="min-h-screen bg-white dark:bg-midnight-950 pt-24">
@@ -193,50 +261,90 @@ const Menu = () => {
               {menuCategories.map(category => (
                 <button
                   key={category.id}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
                     activeCategory === category.id
                       ? 'bg-rose-500 text-white'
                       : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
                   }`}
                   onClick={() => setActiveCategory(category.id)}
                 >
-                  {category.name}
+                  {category.id === 'drinks' ? (
+                    <Wine className="h-4 w-4" />
+                  ) : (
+                    <Utensils className="h-4 w-4" />
+                  )}
+                  <span>{category.name}</span>
                 </button>
               ))}
             </div>
             
-            {/* Filters */}
+            {/* Filters - Conditional based on category */}
             <div className="flex space-x-2 w-full md:w-auto justify-end">
               <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
                   filter === 'all'
                     ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
                     : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
                 }`}
                 onClick={() => setFilter('all')}
               >
-                All Items
+                <CircleDot className="h-4 w-4" />
+                <span>All Items</span>
               </button>
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  filter === 'vegetarian'
-                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                }`}
-                onClick={() => setFilter('vegetarian')}
-              >
-                Vegetarian
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  filter === 'signature'
-                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                }`}
-                onClick={() => setFilter('signature')}
-              >
-                Signature
-              </button>
+              
+              {isDrinksCategory ? (
+                // Drinks category filters
+                <>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                      filter === 'cold'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('cold')}
+                  >
+                    <CircleDot className="h-4 w-4" />
+                    <span>Cold</span>
+                  </button>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                      filter === 'hot'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('hot')}
+                  >
+                    <CircleDot className="h-4 w-4" />
+                    <span>Hot</span>
+                  </button>
+                </>
+              ) : (
+                // Food category filters
+                <>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                      filter === 'vegetarian'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('vegetarian')}
+                  >
+                    <CircleDot className="h-4 w-4" />
+                    <span>Vegetarian</span>
+                  </button>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                      filter === 'signature'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('signature')}
+                  >
+                    <CircleDot className="h-4 w-4" />
+                    <span>Signature</span>
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -250,7 +358,12 @@ const Menu = () => {
               key={category.id}
               className={`mb-16 ${activeCategory === category.id ? 'block' : 'hidden'}`}
             >
-              <h2 className="heading-md text-gray-900 dark:text-white mb-8">
+              <h2 className="heading-md text-gray-900 dark:text-white mb-8 flex items-center">
+                {category.id === 'drinks' ? (
+                  <Wine className="h-6 w-6 mr-2 text-rose-500" />
+                ) : (
+                  <Utensils className="h-6 w-6 mr-2 text-rose-500" />
+                )}
                 {category.name}
               </h2>
               
