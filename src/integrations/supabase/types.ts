@@ -9,7 +9,203 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          created_at: string
+          description: string | null
+          event_date: string
+          id: string
+          image_url: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          event_date: string
+          id?: string
+          image_url?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          event_date?: string
+          id?: string
+          image_url?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      gallery: {
+        Row: {
+          created_at: string
+          id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string
+          title: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url: string
+          title?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
+      menu_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      menu_items: {
+        Row: {
+          category_id: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_hot: boolean | null
+          is_signature: boolean | null
+          is_vegetarian: boolean | null
+          name: string
+          price: number
+        }
+        Insert: {
+          category_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_hot?: boolean | null
+          is_signature?: boolean | null
+          is_vegetarian?: boolean | null
+          name: string
+          price: number
+        }
+        Update: {
+          category_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_hot?: boolean | null
+          is_signature?: boolean | null
+          is_vegetarian?: boolean | null
+          name?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "menu_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reservations: {
+        Row: {
+          created_at: string
+          date: string
+          email: string
+          id: string
+          name: string
+          party_size: number
+          phone: string
+          special_requests: string | null
+          status: string | null
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          email: string
+          id?: string
+          name: string
+          party_size: number
+          phone: string
+          special_requests?: string | null
+          status?: string | null
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          email?: string
+          id?: string
+          name?: string
+          party_size?: number
+          phone?: string
+          special_requests?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          comment: string
+          created_at: string
+          date: string
+          id: string
+          name: string
+          rating: number
+        }
+        Insert: {
+          comment: string
+          created_at?: string
+          date?: string
+          id?: string
+          name: string
+          rating: number
+        }
+        Update: {
+          comment?: string
+          created_at?: string
+          date?: string
+          id?: string
+          name?: string
+          rating?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

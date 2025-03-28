@@ -2,90 +2,74 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
-
-// Gallery content
-const galleryImages = [
-  {
-    id: 1,
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
-    alt: 'Restaurant interior',
-    category: 'interior'
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1546195885-9a82a6bc621a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80',
-    alt: 'Table setting',
-    category: 'interior'
-  },
-  {
-    id: 3,
-    src: 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    alt: 'Restaurant terrace',
-    category: 'interior'
-  },
-  {
-    id: 4,
-    src: 'https://images.unsplash.com/photo-1515669097368-22e68427d265?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
-    alt: 'Private dining room',
-    category: 'interior'
-  },
-  {
-    id: 5,
-    src: 'https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-    alt: 'French onion soup',
-    category: 'food'
-  },
-  {
-    id: 6,
-    src: 'https://images.unsplash.com/photo-1608039590651-5b53f4f2c3b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80',
-    alt: 'Beef bourguignon',
-    category: 'food'
-  },
-  {
-    id: 7,
-    src: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-    alt: 'Crème brûlée',
-    category: 'food'
-  },
-  {
-    id: 8,
-    src: 'https://images.unsplash.com/photo-1611329695918-1b2e40f3965d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80',
-    alt: 'Chocolate soufflé',
-    category: 'food'
-  },
-  {
-    id: 9,
-    src: 'https://images.unsplash.com/photo-1546881963-ac8d67aee789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1634&q=80',
-    alt: 'Champagne glasses',
-    category: 'drinks'
-  },
-  {
-    id: 10,
-    src: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-    alt: 'Wine selection',
-    category: 'drinks'
-  },
-  {
-    id: 11,
-    src: 'https://images.unsplash.com/photo-1557680717-6b245a5a4c45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80',
-    alt: 'Private event',
-    category: 'events'
-  },
-  {
-    id: 12,
-    src: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-    alt: 'Chef plating',
-    category: 'kitchen'
-  }
-];
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "../components/ui/use-toast";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     window.scrollTo(0, 0);
+    fetchGalleryImages();
   }, []);
+  
+  const fetchGalleryImages = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('gallery_images')
+        .select('*');
+      
+      if (error) {
+        throw error;
+      }
+      
+      if (data) {
+        // Transform the data to match the format we need
+        const transformedData = data.map(img => ({
+          id: img.id,
+          src: img.image_url,
+          alt: img.title || 'Gallery image',
+          category: img.description?.toLowerCase().includes('interior') ? 'interior' : 
+                  img.description?.toLowerCase().includes('drink') ? 'drinks' :
+                  img.description?.toLowerCase().includes('event') ? 'events' :
+                  img.description?.toLowerCase().includes('kitchen') ? 'kitchen' : 'food'
+        }));
+        setGalleryImages(transformedData);
+      }
+    } catch (error) {
+      console.error('Error fetching gallery images:', error);
+      toast({
+        title: "Error loading gallery",
+        description: "There was a problem loading the gallery images. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // If no images are fetched yet, use fallback static data for development
+  const fallbackImages = [
+    {
+      id: 1,
+      src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
+      alt: 'Restaurant interior',
+      category: 'interior'
+    },
+    {
+      id: 2,
+      src: 'https://images.unsplash.com/photo-1546195885-9a82a6bc621a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80',
+      alt: 'Table setting',
+      category: 'interior'
+    },
+    // ... we'll use the original static data as fallback but they'll be replaced by database content
+  ];
+  
+  const displayImages = galleryImages.length > 0 ? galleryImages : fallbackImages;
   
   const openLightbox = (image) => {
     setSelectedImage(image);
@@ -98,8 +82,8 @@ const Gallery = () => {
   };
   
   const filteredImages = activeFilter === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(image => image.category === activeFilter);
+    ? displayImages 
+    : displayImages.filter(image => image.category === activeFilter);
   
   return (
     <div className="min-h-screen bg-white dark:bg-midnight-950 pt-24">
@@ -150,27 +134,33 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-8 px-6">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredImages.map((image, index) => (
-              <motion.div
-                key={image.id}
-                className="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group aspect-square"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                onClick={() => openLightbox(image)}
-              >
-                <img 
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                  <p className="text-white text-sm font-medium">{image.alt}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-500"></div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {filteredImages.map((image, index) => (
+                <motion.div
+                  key={image.id}
+                  className="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer group aspect-square"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  onClick={() => openLightbox(image)}
+                >
+                  <img 
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <p className="text-white text-sm font-medium">{image.alt}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
       
@@ -217,7 +207,7 @@ const Gallery = () => {
         </div>
       </section>
       
-      {/* Admin Notice (Placeholder) */}
+      {/* Admin Notice */}
       <section className="py-12 px-6">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto bg-white dark:bg-midnight-900 p-6 rounded-xl shadow-md">
