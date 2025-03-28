@@ -2,48 +2,40 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface BookingButtonProps {
   className?: string;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+  size?: 'default' | 'sm' | 'lg' | 'icon';
   onClick?: () => void;
 }
 
 const BookingButton: React.FC<BookingButtonProps> = ({ 
   className = '',
-  variant = 'primary',
-  size = 'md',
+  variant = 'default',
+  size = 'default',
   onClick
 }) => {
-  // Base classes
-  const baseClasses = "inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-300 hover:-translate-y-1";
-  
-  // Size classes
-  const sizeClasses = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3",
-    lg: "px-8 py-4 text-lg",
-  };
-  
-  // Variant classes
-  const variantClasses = {
-    primary: "bg-gradient-to-br from-rose-400 to-rose-600 text-white hover:from-rose-500 hover:to-rose-700 shadow-md hover:shadow-lg",
-    secondary: "border border-rose-400 text-rose-500 hover:text-white bg-transparent hover:bg-rose-500 shadow-sm hover:shadow-md",
-    outline: "border border-white/20 backdrop-blur-sm text-white hover:bg-white/10",
-  };
-  
-  const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
-  
   return (
-    <Link 
-      to="/reservations"
-      className={buttonClasses}
-      onClick={onClick}
+    <Button 
+      variant={variant} 
+      size={size} 
+      className={cn(
+        "hover:-translate-y-1 transition-transform duration-300", 
+        className
+      )}
+      asChild
     >
-      Book a Table
-      <ArrowRight className="w-4 h-4" />
-    </Link>
+      <Link 
+        to="/reservations"
+        onClick={onClick}
+      >
+        Book a Table
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+    </Button>
   );
 };
 
