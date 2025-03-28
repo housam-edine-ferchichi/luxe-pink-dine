@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface BookingButtonProps {
   className?: string;
@@ -35,13 +36,14 @@ const BookingButton: React.FC<BookingButtonProps> = ({
   const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
   
   return (
-    <button 
+    <Link 
+      to="/reservations"
       className={buttonClasses}
       onClick={onClick}
     >
       Book a Table
       <ArrowRight className="w-4 h-4" />
-    </button>
+    </Link>
   );
 };
 

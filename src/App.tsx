@@ -10,6 +10,7 @@ import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Reservations from "./pages/Reservations";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -32,6 +33,7 @@ const App = () => (
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/reservations" element={<Reservations />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
