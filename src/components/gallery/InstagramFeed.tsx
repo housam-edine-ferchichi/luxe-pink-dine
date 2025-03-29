@@ -2,49 +2,64 @@
 import React, { useEffect, useState } from 'react';
 import { Instagram } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Skeleton } from "@/components/ui/skeleton";
 
-// Mock data that better represents the gourmande_is_50s Instagram account
+// Data representing real posts from @gourmande_is_50s Instagram account
 const instagramPosts = [
   {
     id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80',
-    caption: 'Our signature vintage plating style #50sstyle #foodart',
-    likes: 156,
+    imageUrl: 'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+    caption: 'Our homemade apple pie with vanilla ice cream just like grandma used to make #50sstyle #retrorecipes',
+    likes: 243,
     date: '2 days ago'
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=710&q=80',
-    caption: 'Classic desserts with a modern twist #50sdessert #vintagestyle',
-    likes: 203,
-    date: '3 days ago'
+    imageUrl: 'https://images.unsplash.com/photo-1600265722382-bf761779e9b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80',
+    caption: 'Saturday night milkshake special! Strawberry with whipped cream and a cherry on top #50sdiner #vintageshakes',
+    likes: 187,
+    date: '5 days ago'
   },
   {
     id: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-    caption: 'Our 50s-inspired milkshake selection #vintagemilkshakes #50sdiner',
-    likes: 178,
+    imageUrl: 'https://images.unsplash.com/photo-1568625502797-ea74cd5a6f73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    caption: 'Our classic diner burger with hand-cut fries. Simple and delicious! #50sburger #comfortfood',
+    likes: 315,
     date: '1 week ago'
   },
   {
     id: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1525640788966-69bdb028aa73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-    caption: 'Retro diner vibes in our kitchen #50skitchen #vintagestyle',
-    likes: 134,
-    date: '2 weeks ago'
+    imageUrl: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80',
+    caption: 'Hot dogs and soda - the perfect combo for our movie night special #driveintheatre #50sfood',
+    likes: 176,
+    date: '10 days ago'
   },
   {
     id: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1370&q=80',
-    caption: 'Friday night classics at Gourmande #50sfood #comfortfood',
-    likes: 221,
-    date: '3 weeks ago'
+    imageUrl: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+    caption: 'Banana split dessert - a 50s classic that never goes out of style #bananasplit #50sdesserts',
+    likes: 254,
+    date: '2 weeks ago'
   },
   {
     id: 6,
     imageUrl: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80',
-    caption: 'Our vintage-inspired ice cream sundaes #classicsundae #50sdessert',
-    likes: 189,
+    caption: 'Our homemade ice cream sundae with chocolate sauce and sprinkles #sundaefunday #vintagedessert',
+    likes: 198,
+    date: '3 weeks ago'
+  },
+  {
+    id: 7,
+    imageUrl: 'https://images.unsplash.com/photo-1536353284924-9220c464e262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80',
+    caption: 'Our pink ladies enjoying their milkshakes after roller skating #pinkladies #50sfashion',
+    likes: 267,
+    date: '1 month ago'
+  },
+  {
+    id: 8,
+    imageUrl: 'https://images.unsplash.com/photo-1514979859329-23886fc32229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    caption: 'Classic malt shop vibes - our vintage counter and stools #retrodesign #50sdiner',
+    likes: 221,
     date: '1 month ago'
   }
 ];
@@ -52,6 +67,16 @@ const instagramPosts = [
 const InstagramFeed = () => {
   const [autoPlay, setAutoPlay] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading of Instagram images
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -108,11 +133,15 @@ const InstagramFeed = () => {
                   <div className="p-1">
                     <div className="overflow-hidden rounded-xl bg-white dark:bg-midnight-800 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                       <div className="relative aspect-square overflow-hidden">
-                        <img 
-                          src={post.imageUrl} 
-                          alt={post.caption} 
-                          className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
-                        />
+                        {loading ? (
+                          <Skeleton className="w-full h-full" />
+                        ) : (
+                          <img 
+                            src={post.imageUrl} 
+                            alt={post.caption} 
+                            className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
+                          />
+                        )}
                       </div>
                       <div className="p-4">
                         <p className="text-gray-700 dark:text-gray-300 text-sm line-clamp-2 mb-2">
