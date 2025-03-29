@@ -18,8 +18,8 @@ const IntroSection: React.FC = () => {
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
               {/* Replace with your high-quality restaurant interior image */}
               <img 
-                src="https://images.unsplash.com/photo-1546195885-9a82a6bc621a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80" 
-                alt="Elegant restaurant interior" 
+                src="images/menu/Jade.png" 
+                alt="Your host Jade " 
                 className="w-full h-full object-cover"
               />
               
@@ -34,7 +34,7 @@ const IntroSection: React.FC = () => {
                 "Every dish tells a story of passion and tradition."
               </p>
               <p className="text-right mt-2 text-xs font-medium text-rose-600 dark:text-rose-400">
-                — Chef Antoine Dubois
+                — Jade
               </p>
             </div>
           </motion.div>
@@ -47,14 +47,16 @@ const IntroSection: React.FC = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">Welcome to L'Élégance</span>
+              <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">Welcome to Gourmande is 50's </span>
               <h2 className="heading-lg mt-2 text-gray-900 dark:text-white">
-                A Culinary Journey Through France
+                A Culinary Journey with Jade
               </h2>
               <p className="mt-4 body-lg text-gray-700 dark:text-gray-300">
-                L'Élégance offers a refined dining experience inspired by the rich culinary heritage of France, 
-                reimagined with contemporary flair. We celebrate exceptional ingredients, meticulous technique, 
-                and artistic presentation in a setting of unparalleled elegance.
+                Je suis Jade, 34 ans, passionnée de pâtisserie et pin-up dans l’âme depuis de nombreuses années.
+Maman de 3 princesses en bas âge, dont une super héroïne, j'aime les défis et mène des combats sans jamais me décourager pour arriver au bout de mes rêves.
+J'ai les cheveux roses depuis 10 ans bientôt et ma chevelure de princesse, c'est uniquement grâce à la best @lamaisondublondbyflorinacannet.
+J'ai un tempérament de feu et donne tout pour ceux que j'aime, mais aussi pour mon travail !! Je suis une vraie acharnée et ne lâche jamais l'affaire !
+Ma devise : toujours croire en ses rêves !
               </p>
             </motion.div>
           </div>

@@ -2,230 +2,317 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
-import { Wine, Utensils, CircleDot } from 'lucide-react';
+import path from 'path';
 
 // Menu data
 const menuCategories = [
   {
-    id: 'starters',
-    name: 'Starters',
+    id: 'Menu Brunch',
+    name: 'Menu Brunch',
     items: [
       {
-        name: 'Soupe à l\'Oignon',
+        name: 'Egg muffin cheddar ',
         description: 'Classic French onion soup with caramelized onions, beef broth, and topped with melted Gruyère cheese',
-        price: '€14',
-        isSignature: false,
-        isVegetarian: false,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+        price: '€5.50',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/egg muffin cheddar.png',
       },
       {
-        name: 'Escargots de Bourgogne',
+        name: 'Egg muffin bacon cheddar ',
         description: 'Burgundy snails baked with garlic herb butter and served with artisanal bread',
-        price: '€16',
-        isSignature: true,
-        isVegetarian: false,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1625944525533-473f1a3d54e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1546&q=80'
+        price: '€5.80',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/egg muffin bacon cheddar.png'
       },
       {
-        name: 'Salade Niçoise',
+        name: 'Ouefs brouillés ',
         description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
-        price: '€15',
-        isSignature: false,
-        isVegetarian: false,
-        isHot: false,
-        isCold: true,
-        image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+        price: '€5.50',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/ouefs brouillés.png'
       },
       {
-        name: 'Tartare de Betteraves',
+        name: 'Ouefs brouillés cheddar ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€5.90',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/ouefs brouillés cheddar.png'
+      },
+      {
+        name: 'Ouefs brouillés bacon cheddar ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€6.20',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/egg brouillés bacon cheddar.png'
+      },
+      {
+        name: 'Croque jombon ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€6.00',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/croque jombon.png'
+      },
+      {
+        name: 'Croque truffé',
         description: 'Beetroot tartare with goat cheese mousse, candied walnuts, and microgreens',
-        price: '€13',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: false,
-        isCold: true,
-        image: 'https://images.unsplash.com/photo-1534533983688-c1b3cd781d14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1734&q=80'
+        price: '€7.5',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/croque jombon.png'
+      },
+      {
+        name: 'Tartine saumon avocat ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€7.00',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/Tartine saumon avocat.png'
+      },
+      {
+        name: 'Mac & Cheese ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€8.00',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/mac & cheese.png'
+      },
+      {
+        name: 'Tartine pink avocado ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€7.00',
+        isSweet: false,
+        isSalty: true,
+        image: 'images/menu/tartine pink avocado.png'
+      },
+    
+      {
+        name: 'Coockie ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€2.28',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/coockie.png'
+      },
+      {
+        name: 'Muffin ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€4.50',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/Muffin.png'
+      },
+      {
+        name: 'Cupcake ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€3.80',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/cupcake.png'
+      },
+      {
+        name: 'Brownie ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€3.80',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/brownie.png'
+      },
+      {
+        name: 'Carrot Cake ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€4.20',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/carrot cake.png'
+      },
+      {
+        name: 'Cake',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€3.00',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/cake.png'
+      },
+      {
+        name: 'Trio pancakes ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€6.50',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/trio pancakes.png'
+      },
+      {
+        name: 'Smoothie bowl ',
+        description: 'Traditional salad with tuna, green beans, potatoes, olives, eggs, and anchovy vinaigrette',
+        price: '€7.50',
+        isSweet: true,
+        isSalty: false,
+        image: 'images/menu/smoothie bowl.png'
       }
+
     ]
   },
   {
-    id: 'mains',
-    name: 'Main Courses',
+    id: 'Drinks',
+    name: 'Drinks menu',
     items: [
       {
-        name: 'Boeuf Bourguignon',
-        description: 'Slow-cooked beef in red wine sauce with pearl onions, mushrooms, and lardons',
-        price: '€29',
-        isSignature: true,
-        isVegetarian: false,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1608039590651-5b53f4f2c3b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1635&q=80'
+        name: 'Espresso',
+        description: 'Single shot of espresso',
+        price: '€1.70',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/espresso.png'
       },
       {
-        name: 'Canard à l\'Orange',
-        description: 'Roast duck with a classic orange and Grand Marnier sauce, served with root vegetables',
-        price: '€32',
-        isSignature: true,
-        isVegetarian: false,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
+        name: 'Café long',  
+        description: 'Single shot of espresso with hot water',
+        price: '€1.70',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/cafe long.png'
       },
       {
-        name: 'Coq au Vin',
-        description: 'Chicken braised with wine, lardons, mushrooms, and garlic, served with creamy mashed potatoes',
-        price: '€27',
-        isSignature: false,
-        isVegetarian: false,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1623595119708-26b1f7500caa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80'
+        name: 'Noisette',
+        description: 'Single shot of espresso with a dash of milk',
+        price: '€1.80',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/Noisette.png'
       },
       {
-        name: 'Ratatouille Provençale',
-        description: 'Traditional southern French vegetable stew with saffron rice and herbed goat cheese',
-        price: '€24',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1746&q=80'
+        name: 'Américain',
+        description: 'Double shot of espresso with hot water',
+        price: '€2.10',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/americain.png'
+      },
+      {
+        name: 'Cappuccino',
+        description: 'Single shot of espresso with steamed milk and milk foam',
+        price: '€3.60',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/Cappuccino.png'
+      },
+      {
+        name: 'Latté',
+        description: 'Single shot of espresso with steamed milk',
+        price: '€3.80',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/latté.png'
+      },
+      {
+        name: 'Hot Chocolate sucette',
+        description: 'Single shot of espresso with a dash of milk',
+        price: '€4.50',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/hot chocolate sucette.png'
+      },
+      {
+        name: 'Thé kusmi tea',
+        description: 'Thé kusmi tea',
+        price: '€3.60',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/kusmi tea.png'
+      },
+      {
+        name: 'Café viennois',
+        description: 'Single shot of espresso with a dash of milk',
+        price: '€4.00',
+        isSweet: false,
+        isSalty: false,
+        image: 'images/menu/café viennois.png'
       }
     ]
   },
   {
-    id: 'desserts',
-    name: 'Desserts',
+    id: 'menu',
+    name: 'menu',
     items: [
       {
         name: 'Crème Brûlée',
         description: 'Classic vanilla bean custard with a caramelized sugar crust',
         price: '€12',
-        isSignature: true,
-        isVegetarian: true,
-        isHot: false,
-        isCold: true,
+        isSweet: true,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80'
       },
       {
         name: 'Tarte Tatin',
         description: 'Upside-down caramelized apple tart served with vanilla bean ice cream',
         price: '€13',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: true,
-        isCold: false,
+        isSweet: false,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1516717334666-8e9f2c21c702?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1636&q=80'
       },
       {
         name: 'Soufflé au Chocolat',
         description: 'Warm chocolate soufflé with a molten center, dusted with powdered sugar',
         price: '€14',
-        isSignature: true,
-        isVegetarian: true,
-        isHot: true,
-        isCold: false,
+        isSweet: true,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1611329695918-1b2e40f3965d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1744&q=80'
       }
     ]
   },
   {
-    id: 'drinks',
-    name: 'Drinks & Wines',
+    id: 'Prestation sur commande',
+    name: 'Prestation sur commande',
     items: [
       {
         name: 'Champagne Laurent-Perrier Rosé',
         description: 'Elegant and fresh champagne with notes of red fruits',
         price: '€25 (glass) / €120 (bottle)',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: false,
-        isCold: true,
+        isSweet: false,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1546881963-ac8d67aee789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1634&q=80'
       },
       {
         name: 'Château Margaux Grand Vin 2015',
         description: 'Premier Grand Cru Classé with complex flavors of black fruit, oak, and spices',
         price: '€45 (glass) / €320 (bottle)',
-        isSignature: true,
-        isVegetarian: true,
-        isHot: false,
-        isCold: true,
+        isSweet: true,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
       },
       {
         name: 'Cocktail L\'Élégance',
         description: 'House special with French gin, elderflower liqueur, fresh lemon, and champagne',
         price: '€16',
-        isSignature: true,
-        isVegetarian: true,
-        isHot: false,
-        isCold: true,
+        isSweet: true,
+        isSalty: true,
         image: 'https://images.unsplash.com/photo-1556855810-ac404aa91e85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
-      },
-      {
-        name: 'Thé à la Lavande',
-        description: 'Aromatic lavender tea with honey and a hint of lemon',
-        price: '€8',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
-      },
-      {
-        name: 'Café Gourmand',
-        description: 'Espresso served with a selection of mini desserts',
-        price: '€12',
-        isSignature: false,
-        isVegetarian: true,
-        isHot: true,
-        isCold: false,
-        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80'
       }
     ]
   }
 ];
 
 const Menu = () => {
-  const [activeCategory, setActiveCategory] = useState('starters');
+  const [activeCategory, setActiveCategory] = useState('Menu Brunch');
   const [filter, setFilter] = useState('all');
   
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Reset filter to 'all' when category changes
-    setFilter('all');
-  }, [activeCategory]);
+  }, []);
   
-  // Filter menu items based on selected filter and category
+  // Filter menu items based on selected filter
   const filterItems = (items) => {
     if (filter === 'all') return items;
-    
-    // Special filters for drinks category
-    if (activeCategory === 'drinks') {
-      if (filter === 'cold') return items.filter(item => item.isCold);
-      if (filter === 'hot') return items.filter(item => item.isHot);
-    } else {
-      // Regular filters for other categories
-      if (filter === 'vegetarian') return items.filter(item => item.isVegetarian);
-      if (filter === 'signature') return items.filter(item => item.isSignature);
-    }
-    
+    if (filter === 'Salty') return items.filter(item => item.isSalty);
+    if (filter === 'Sweet') return items.filter(item => item.isSweet);
     return items;
   };
-
-  // Get active category data
-  const getActiveCategoryData = () => {
-    return menuCategories.find(cat => cat.id === activeCategory);
-  };
-  
-  // Check if the current category is drinks
-  const isDrinksCategory = activeCategory === 'drinks';
   
   return (
     <div className="min-h-screen bg-white dark:bg-midnight-950 pt-24">
@@ -261,90 +348,50 @@ const Menu = () => {
               {menuCategories.map(category => (
                 <button
                   key={category.id}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                     activeCategory === category.id
                       ? 'bg-rose-500 text-white'
                       : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
                   }`}
                   onClick={() => setActiveCategory(category.id)}
                 >
-                  {category.id === 'drinks' ? (
-                    <Wine className="h-4 w-4" />
-                  ) : (
-                    <Utensils className="h-4 w-4" />
-                  )}
-                  <span>{category.name}</span>
+                  {category.name}
                 </button>
               ))}
             </div>
             
-            {/* Filters - Conditional based on category */}
+            {/* Filters */}
             <div className="flex space-x-2 w-full md:w-auto justify-end">
               <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                   filter === 'all'
                     ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
                     : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
                 }`}
                 onClick={() => setFilter('all')}
               >
-                <CircleDot className="h-4 w-4" />
-                <span>All Items</span>
+                All Items
               </button>
-              
-              {isDrinksCategory ? (
-                // Drinks category filters
-                <>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
-                      filter === 'cold'
-                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                    }`}
-                    onClick={() => setFilter('cold')}
-                  >
-                    <CircleDot className="h-4 w-4" />
-                    <span>Cold</span>
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
-                      filter === 'hot'
-                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                    }`}
-                    onClick={() => setFilter('hot')}
-                  >
-                    <CircleDot className="h-4 w-4" />
-                    <span>Hot</span>
-                  </button>
-                </>
-              ) : (
-                // Food category filters
-                <>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
-                      filter === 'vegetarian'
-                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                    }`}
-                    onClick={() => setFilter('vegetarian')}
-                  >
-                    <CircleDot className="h-4 w-4" />
-                    <span>Vegetarian</span>
-                  </button>
-                  <button
-                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${
-                      filter === 'signature'
-                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                    }`}
-                    onClick={() => setFilter('signature')}
-                  >
-                    <CircleDot className="h-4 w-4" />
-                    <span>Signature</span>
-                  </button>
-                </>
-              )}
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                  filter === 'Salty'
+                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                }`}
+                onClick={() => setFilter('Salty')}
+              >
+                Salty
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                  filter === 'Sweet'
+                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                }`}
+                onClick={() => setFilter('Sweet')}
+              >
+                Sweet
+              </button>
             </div>
           </div>
         </div>
@@ -358,12 +405,7 @@ const Menu = () => {
               key={category.id}
               className={`mb-16 ${activeCategory === category.id ? 'block' : 'hidden'}`}
             >
-              <h2 className="heading-md text-gray-900 dark:text-white mb-8 flex items-center">
-                {category.id === 'drinks' ? (
-                  <Wine className="h-6 w-6 mr-2 text-rose-500" />
-                ) : (
-                  <Utensils className="h-6 w-6 mr-2 text-rose-500" />
-                )}
+              <h2 className="heading-md text-gray-900 dark:text-white mb-8">
                 {category.name}
               </h2>
               
@@ -382,14 +424,14 @@ const Menu = () => {
                         alt={item.name} 
                         className="w-full h-full object-cover"
                       />
-                      {item.isSignature && (
+                      {item.isSweet && (
                         <div className="absolute top-2 left-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                          Signature
+                          Sweet
                         </div>
                       )}
-                      {item.isVegetarian && (
+                      {item.isSalty && (
                         <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                          Veg
+                          Salty
                         </div>
                       )}
                     </div>
@@ -423,7 +465,7 @@ const Menu = () => {
             <div className="text-center mb-8">
               <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">A Personal Touch</span>
               <h2 className="heading-md mt-2 text-gray-900 dark:text-white">
-                From the Chef
+                From your Host
               </h2>
             </div>
             
@@ -431,27 +473,27 @@ const Menu = () => {
               <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
                 <div className="w-24 h-24 rounded-full overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                    src="images/menu/jade host.png" 
                     alt="Chef Antoine Dubois" 
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-semibold text-gray-900 dark:text-white">
-                    Chef Antoine Dubois
+                    Jade
                   </h3>
-                  <p className="text-rose-600 dark:text-rose-400">Executive Chef</p>
+                  <p className="text-rose-600 dark:text-rose-400"></p>
                 </div>
               </div>
               
               <blockquote className="text-gray-600 dark:text-gray-300 italic">
-                "Our menu is a celebration of French culinary heritage with a contemporary vision. We source only the finest seasonal ingredients, supporting local producers wherever possible. Each dish is crafted with precision and passion, designed to create a memorable sensory experience. The true essence of L'Élégance lies in our commitment to honoring tradition while embracing innovation."
+                "🧁La gourmandise commence quand on n’a plus faim ! @gourmande_is_50s."
               </blockquote>
               
               <div className="mt-6 text-right">
                 <img 
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40' fill='none'%3E%3Cpath d='M20 30C25.5228 30 30 25.5228 30 20C30 14.4772 25.5228 10 20 10C14.4772 10 10 14.4772 10 20C10 25.5228 14.4772 30 20 30Z' stroke='%23F43F72' stroke-width='1'/%3E%3Cpath d='M10 20H30' stroke='%23F43F72' stroke-width='1'/%3E%3Cpath d='M20 10V30' stroke='%23F43F72' stroke-width='1'/%3E%3Cpath d='M40 16H100' stroke='%23F43F72' stroke-width='0.5'/%3E%3Cpath d='M40 24H100' stroke='%23F43F72' stroke-width='0.5'/%3E%3C/svg%3E" 
-                  alt="Signature" 
+                  alt="Sweet" 
                   className="inline-block h-10"
                 />
               </div>
@@ -461,42 +503,7 @@ const Menu = () => {
       </section>
       
       {/* Dietary Information */}
-      <section className="py-12 px-6">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-8">
-              <h3 className="heading-sm text-gray-900 dark:text-white">
-                Dietary Information
-              </h3>
-            </div>
-            
-            <div className="bg-white dark:bg-midnight-900 p-6 rounded-xl shadow-md">
-              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                We are committed to accommodating dietary requirements. Please inform your server of any allergies or dietary restrictions.
-              </p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="flex flex-col items-center p-3 bg-gray-50 dark:bg-midnight-800 rounded-lg">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">Vegetarian options</span>
-                  <span className="text-green-500 text-2xl">✓</span>
-                </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 dark:bg-midnight-800 rounded-lg">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">Vegan options</span>
-                  <span className="text-green-500 text-2xl">✓</span>
-                </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 dark:bg-midnight-800 rounded-lg">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">Gluten-free options</span>
-                  <span className="text-green-500 text-2xl">✓</span>
-                </div>
-                <div className="flex flex-col items-center p-3 bg-gray-50 dark:bg-midnight-800 rounded-lg">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">Nut-free options</span>
-                  <span className="text-green-500 text-2xl">✓</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     
     </div>
   );
 };

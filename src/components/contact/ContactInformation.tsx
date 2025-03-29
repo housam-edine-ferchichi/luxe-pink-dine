@@ -17,8 +17,10 @@ const ContactInformation = () => {
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">Address</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
-              123 Gourmet Street<br />
-              Paris, France
+            Parking casino - 1006 chemin des gourettes - 06370 Mouans Sartoux
+
+SIRET 951 948 348 00010<br />
+               France
             </p>
           </div>
         </div>
@@ -30,7 +32,7 @@ const ContactInformation = () => {
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">Phone</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
-              +33 1 23 45 67 89
+            +33 7 77 36 15 91
             </p>
           </div>
         </div>
@@ -42,7 +44,7 @@ const ContactInformation = () => {
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">Email</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
-              info@lelegance.com
+              
             </p>
           </div>
         </div>
@@ -54,8 +56,9 @@ const ContactInformation = () => {
           <div>
             <h3 className="font-medium text-gray-900 dark:text-white">Opening Hours</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
-              Monday - Sunday<br />
-              12:00 PM - 11:00 PM
+            mardi : 11:30 - 17:30<br />
+              
+              mercredi - samedi : 9:30 - 17:30
             </p>
           </div>
         </div>
@@ -66,7 +69,7 @@ const ContactInformation = () => {
         <h3 className="font-medium text-gray-900 dark:text-white mb-3">Follow Us</h3>
         <div className="flex space-x-4">
           <a 
-            href="#" 
+            href="https://www.instagram.com/gourmande_is_50s/" 
             className="bg-gray-100 dark:bg-midnight-800 p-2 rounded-full hover:bg-rose-100 dark:hover:bg-rose-900/30 transition-colors"
             aria-label="Instagram"
           >

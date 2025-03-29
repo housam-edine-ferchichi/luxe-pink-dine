@@ -93,7 +93,7 @@ const About = () => {
               <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1564759224907-65a7002a48b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" 
-                  alt="L'Élégance restaurant exterior" 
+                  alt="Gourmande is 50's  restaurant exterior" 
                   className="w-full h-full object-cover"
                 />
                 
@@ -112,10 +112,10 @@ const About = () => {
             >
               <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">Our Story</span>
               <h1 className="heading-lg mt-2 text-gray-900 dark:text-white">
-                About L'Élégance
+                About Gourmande is 50's 
               </h1>
               <p className="mt-4 body-lg text-gray-600 dark:text-gray-300">
-                Founded in 2014, L'Élégance was born from Chef Antoine Dubois' vision to create a dining experience that 
+                Founded in 2014, Gourmande is 50's  was born from Chef Antoine Dubois' vision to create a dining experience that 
                 honors the rich culinary heritage of France while embracing contemporary innovation and artistic presentation.
               </p>
               <p className="mt-4 body-md text-gray-600 dark:text-gray-300">
@@ -126,7 +126,7 @@ const About = () => {
               
               {/* Quote */}
               <blockquote className="mt-8 pl-4 border-l-4 border-rose-500 dark:border-rose-400 italic text-gray-700 dark:text-gray-300">
-                "At L'Élégance, we believe dining is not merely about sustenance, but about creating moments of joy 
+                "At Gourmande is 50's , we believe dining is not merely about sustenance, but about creating moments of joy 
                 and connection through the art of gastronomy."
               </blockquote>
             </motion.div>
@@ -356,7 +356,7 @@ const About = () => {
                 Our Values
               </h2>
               <p className="mt-4 body-md text-gray-600 dark:text-gray-300">
-                The principles that guide everything we do at L'Élégance, from our kitchen to our dining room
+                The principles that guide everything we do at Gourmande is 50's , from our kitchen to our dining room
               </p>
               
               <div className="mt-8 space-y-6">

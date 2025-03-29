@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`,
+            backgroundImage: "url('/images/menu/HBB.png')",
             backgroundPosition: "center 30%"
           }}
         />
@@ -28,7 +28,7 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          L'Élégance
+          Gourmande is 50's 
         </motion.h1>
         
         <motion.p 
@@ -37,7 +37,7 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Experience the art of French cuisine redefined with elegance and innovation
+          Venez découvrir nos gourmandises et laissez-vous séduire par le charme de notre salon de thé sur roulotte.
         </motion.p>
         
         <motion.div
@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <div className="flex flex-col items-center">
-            <span className="text-white/80 text-sm mb-2">Scroll to discover</span>
+            <span className="text-white/80 text-sm mb-2"></span>
             <div className="w-0.5 h-16 bg-gradient-to-b from-white to-transparent animate-pulse" />
           </div>
         </motion.div>
