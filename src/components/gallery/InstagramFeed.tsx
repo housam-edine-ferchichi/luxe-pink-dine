@@ -3,47 +3,47 @@ import React, { useEffect, useState } from 'react';
 import { Instagram } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
-// Mock data for Instagram posts
+// Mock data that better represents the gourmande_is_50s Instagram account
 const instagramPosts = [
   {
     id: 1,
-    imageUrl: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80',
-    caption: 'Our signature dish - Beef Wellington with truffle sauce #finedining',
+    imageUrl: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80',
+    caption: 'Our signature vintage plating style #50sstyle #foodart',
     likes: 156,
     date: '2 days ago'
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80',
-    caption: 'Fresh seafood platter for the weekend #seafood #weekend',
+    imageUrl: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=710&q=80',
+    caption: 'Classic desserts with a modern twist #50sdessert #vintagestyle',
     likes: 203,
     date: '3 days ago'
   },
   {
     id: 3,
-    imageUrl: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    caption: 'Our new cocktail menu is now available! #cocktails',
+    imageUrl: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+    caption: 'Our 50s-inspired milkshake selection #vintagemilkshakes #50sdiner',
     likes: 178,
     date: '1 week ago'
   },
   {
     id: 4,
-    imageUrl: 'https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-    caption: 'Behind the scenes in our kitchen #cheflife',
+    imageUrl: 'https://images.unsplash.com/photo-1525640788966-69bdb028aa73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+    caption: 'Retro diner vibes in our kitchen #50skitchen #vintagestyle',
     likes: 134,
     date: '2 weeks ago'
   },
   {
     id: 5,
-    imageUrl: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-    caption: 'Friday night vibes at L\'Élégance #weekendvibes',
+    imageUrl: 'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1370&q=80',
+    caption: 'Friday night classics at Gourmande #50sfood #comfortfood',
     likes: 221,
     date: '3 weeks ago'
   },
   {
     id: 6,
-    imageUrl: 'https://images.unsplash.com/photo-1536489885086-1f21af39f569?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-    caption: 'Special dessert for tonight #sweettooth',
+    imageUrl: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=627&q=80',
+    caption: 'Our vintage-inspired ice cream sundaes #classicsundae #50sdessert',
     likes: 189,
     date: '1 month ago'
   }
@@ -78,7 +78,7 @@ const InstagramFeed = () => {
             </h2>
           </div>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl">
-            Stay updated with our latest culinary creations, events, and behind-the-scenes moments 
+            Stay updated with our latest 50s-inspired culinary creations, vintage events, and nostalgic moments 
             by following us on Instagram.
           </p>
           <a 
