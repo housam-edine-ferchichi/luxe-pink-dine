@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import BookingButton from '../common/BookingButton';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +39,6 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Reservations', path: '/reservations' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -87,11 +85,6 @@ const Navbar = () => {
             )}
           </button>
           
-          {/* Booking Button (Desktop) */}
-          <div className="hidden md:block">
-            <BookingButton size="sm" />
-          </div>
-          
           {/* Mobile Menu Button */}
           <button 
             className="block md:hidden p-2 rounded-lg"
@@ -119,9 +112,6 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <div className="mt-auto pb-12">
-            <BookingButton />
-          </div>
         </div>
       </div>
     </header>

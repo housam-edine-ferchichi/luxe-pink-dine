@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import BookingButton from '../common/BookingButton';
 
 const HeroSection: React.FC = () => {
   return (
@@ -47,7 +46,6 @@ const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <BookingButton variant="primary" size="lg" />
           <button className="btn-outline">
             Explore Menu
           </button>

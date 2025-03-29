@@ -2,24 +2,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const introFeatures = [
-  {
-    title: 'Fine Dining',
-    description: 'Experience culinary excellence with our carefully crafted dishes made from the finest ingredients.',
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f43f72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z'/%3E%3Cpath d='M7 21h10'/%3E%3Cpath d='M19.5 12 22 6'/%3E%3Cpath d='M16.25 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.07.82.38 1.66.62 2.18.24.52.11 1.03 0 1.5-.1.45-.39.9-.5.94'/%3E%3Cpath d='M12.5 3c.27.1.8.53.74 1.36-.05.83-.93 1.2-.98 2.02-.06.82.38 1.66.61 2.18.24.52.11 1.03 0 1.5-.11.45-.39.9-.5.94'/%3E%3Cpath d='M8.75 3c.27.1.8.53.75 1.36-.06.83-.93 1.2-1 2.02-.07.82.38 1.66.62 2.18.24.52.11 1.03 0 1.5-.1.45-.39.9-.5.94'/%3E%3Cpath d='M4.5 12 2 6'/%3E%3C/svg%3E"
-  },
-  {
-    title: 'Elegant Ambiance',
-    description: 'Immerse yourself in a sophisticated atmosphere that blends modern design with timeless elegance.',
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f43f72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12h20'/%3E%3Cpath d='M12 2v20'/%3E%3Cpath d='m4.93 4.93 14.14 14.14'/%3E%3Cpath d='m19.07 4.93-14.14 14.14'/%3E%3C/svg%3E"
-  },
-  {
-    title: 'Expert Sommelier',
-    description: 'Our sommelier will guide you through an exceptional wine selection to complement your meal perfectly.',
-    icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f43f72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22h8'/%3E%3Cpath d='M12 11v11'/%3E%3Cpath d='m19 3-7 8-7-8Z'/%3E%3C/svg%3E"
-  }
-];
-
 const IntroSection: React.FC = () => {
   return (
     <section className="py-20 px-6 bg-white dark:bg-midnight-950 relative overflow-hidden">
@@ -75,32 +57,6 @@ const IntroSection: React.FC = () => {
                 and artistic presentation in a setting of unparalleled elegance.
               </p>
             </motion.div>
-            
-            {/* Features */}
-            <div className="grid gap-6 mt-8">
-              {introFeatures.map((feature, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex gap-4 items-start"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="bg-rose-50 dark:bg-rose-900/20 p-3 rounded-full">
-                    <img src={feature.icon} alt={feature.title} className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-lg font-medium text-gray-900 dark:text-white">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-1 text-gray-600 dark:text-gray-400">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

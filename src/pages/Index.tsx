@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
 import HeroSection from '../components/home/HeroSection';
 import IntroSection from '../components/home/IntroSection';
-import BookingButton from '../components/common/BookingButton';
 
 const specialDishes = [
   {
@@ -238,13 +237,15 @@ const Index = () => {
               viewport={{ once: true }}
             >
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                Reserve Your Extraordinary Dining Experience
+                Experience Extraordinary Dining
               </h2>
               <p className="text-gray-200 mb-8">
                 Join us for an unforgettable culinary journey through the flavors of France. 
-                Book your table now and create lasting memories.
+                Create lasting memories with us.
               </p>
-              <BookingButton size="lg" />
+              <a href="/menu" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-rose-600 hover:bg-rose-50 transition-colors rounded-md font-medium">
+                Explore Our Menu
+              </a>
             </motion.div>
           </div>
         </div>
