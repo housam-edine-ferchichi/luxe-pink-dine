@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +23,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { ReservationData, useReservations } from '@/hooks/useReservations';
 
 // Min date is today, max date is 3 months from now
 const today = new Date();
@@ -43,8 +41,10 @@ const formSchema = z.object({
   special_requests: z.string().optional(),
 });
 
+type ReservationData = z.infer<typeof formSchema>;
+
 const ReservationForm = () => {
-  const { createReservation, isSubmitting } = useReservations();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,12 +58,18 @@ const ReservationForm = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const result = await createReservation(data as ReservationData);
-    
-    if (result.success) {
+  const onSubmit = async (data: ReservationData) => {
+    setIsSubmitting(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log("Reservation data:", data);
       setIsSuccess(true);
       form.reset();
+    } catch (error) {
+      console.error("Error submitting reservation:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

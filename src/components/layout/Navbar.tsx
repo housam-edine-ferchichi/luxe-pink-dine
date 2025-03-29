@@ -75,7 +75,7 @@ const Navbar = () => {
           {/* Social Links */}
           <div className="hidden md:flex items-center space-x-3">
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/gourmande_is_50s/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-midnight-800 transition-colors text-rose-500 hover:text-rose-600"
@@ -138,7 +138,7 @@ const Navbar = () => {
           {/* Mobile Social Links */}
           <div className="flex items-center space-x-4 pt-4">
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/gourmande_is_50s/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-rose-500"
