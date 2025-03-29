@@ -53,7 +53,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="relative z-10">
           <h1 className="font-display text-2xl font-bold text-rose-600 dark:text-rose-400">
-            L'Élégance
+            Gourmande is 50's 
           </h1>
         </Link>
         
@@ -84,7 +84,7 @@ const Navbar = () => {
               <Instagram className="w-5 h-5" />
             </a>
             <a 
-              href="https://ubereats.com" 
+              href="https://www.ubereats.com/fr/store/gourmande-is-50s/kDSnXxdZXmuDEGD6286EOQ" 
               target="_blank" 
               rel="noopener noreferrer"
               className="font-medium text-sm p-2 hover:bg-gray-100 dark:hover:bg-midnight-800 rounded-full transition-colors text-rose-500 hover:text-rose-600"

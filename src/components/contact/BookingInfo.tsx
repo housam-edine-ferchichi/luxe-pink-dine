@@ -10,7 +10,7 @@ const BookingInfo = () => {
       </h2>
       
       <p className="text-gray-600 dark:text-gray-300 mb-6">
-        Reach out to L'Élégance for information about our menu, events, or any inquiries you might have.
+        Reach out to Gourmande is 50's  for information about our menu, events, or any inquiries you might have.
       </p>
       
       <div className="space-y-6">
@@ -22,7 +22,7 @@ const BookingInfo = () => {
             <h3 className="font-medium text-gray-900 dark:text-white">By Phone</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
               For immediate assistance, please call us at<br />
-              <span className="text-rose-600 dark:text-rose-400 font-medium">+33 1 23 45 67 89</span>
+              <span className="text-rose-600 dark:text-rose-400 font-medium">+33 7 77 36 15 91</span>
             </p>
           </div>
         </div>
@@ -35,7 +35,7 @@ const BookingInfo = () => {
             <h3 className="font-medium text-gray-900 dark:text-white">By Email</h3>
             <p className="text-gray-600 dark:text-gray-300 mt-1">
               Send us your questions at<br />
-              <span className="text-rose-600 dark:text-rose-400 font-medium">info@lelegance.com</span>
+              <span className="text-rose-600 dark:text-rose-400 font-medium"></span>
             </p>
           </div>
         </div>

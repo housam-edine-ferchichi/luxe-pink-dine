@@ -17,7 +17,7 @@ const GalleryHero = () => {
               Gallery
             </h1>
             <p className="mt-4 body-lg text-gray-600 dark:text-gray-300">
-              Immerse yourself in the visual story of L'Élégance, from our elegant interior to our exquisite culinary creations
+              Immerse yourself in the visual story of Gourmande is 50's , from our elegant interior to our exquisite culinary creations
             </p>
           </motion.div>
         </div>

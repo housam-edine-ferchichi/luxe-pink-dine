@@ -86,7 +86,7 @@ const ReservationForm = () => {
           Reservation Confirmed!
         </h3>
         <p className="text-green-700 dark:text-green-300 mb-4">
-          Thank you for choosing L'Élégance. We've sent the details to your email.
+          Thank you for choosing Gourmande is 50's . We've sent the details to your email.
         </p>
         <Button
           variant="outline"
