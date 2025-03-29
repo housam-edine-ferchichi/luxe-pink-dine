@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Instagram } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 const Navbar = () => {
@@ -70,8 +70,30 @@ const Navbar = () => {
           ))}
         </nav>
         
-        {/* Right Side Actions */}
+        {/* Social Media & Actions */}
         <div className="flex items-center space-x-4">
+          {/* Social Links */}
+          <div className="hidden md:flex items-center space-x-3">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-midnight-800 transition-colors text-rose-500 hover:text-rose-600"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://ubereats.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-medium text-sm p-2 hover:bg-gray-100 dark:hover:bg-midnight-800 rounded-full transition-colors text-rose-500 hover:text-rose-600"
+              aria-label="UberEats"
+            >
+              UberEats
+            </a>
+          </div>
+          
           {/* Theme Toggle */}
           <button 
             onClick={toggleTheme} 
@@ -112,6 +134,29 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          
+          {/* Mobile Social Links */}
+          <div className="flex items-center space-x-4 pt-4">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 text-rose-500"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+              <span>Instagram</span>
+            </a>
+            <a 
+              href="https://ubereats.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-rose-500"
+              aria-label="UberEats"
+            >
+              UberEats
+            </a>
+          </div>
         </div>
       </div>
     </header>

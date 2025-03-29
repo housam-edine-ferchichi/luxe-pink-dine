@@ -11,6 +11,7 @@ import GalleryGrid from '@/components/gallery/GalleryGrid';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import GalleryQuote from '@/components/gallery/GalleryQuote';
 import AdminNotice from '@/components/gallery/AdminNotice';
+import InstagramFeed from '@/components/gallery/InstagramFeed';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
@@ -62,6 +63,8 @@ const Gallery = () => {
         selectedImage={selectedImage}
         onClose={closeLightbox}
       />
+      
+      <InstagramFeed />
       
       <GalleryQuote />
       
