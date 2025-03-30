@@ -22,7 +22,6 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* Using HashRouter with basename for GitHub Pages compatibility */}
         <HashRouter>
           <div className="flex flex-col min-h-screen">
             <Navbar />

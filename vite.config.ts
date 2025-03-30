@@ -10,8 +10,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // Correct base path for GitHub Pages - using relative path for better compatibility
-  base: "./",
+  // Use empty string for base path to ensure assets load correctly
+  base: "",
   plugins: [
     react(),
     mode === 'development' &&
