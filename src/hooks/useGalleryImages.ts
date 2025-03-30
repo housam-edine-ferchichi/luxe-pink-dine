@@ -55,7 +55,7 @@ export const useGalleryImages = () => {
   };
 };
 
-// Fallback images for development
+// Update paths to be relative for GitHub Pages compatibility
 export const fallbackImages: GalleryImage[] = [
   {
     id: 1,
