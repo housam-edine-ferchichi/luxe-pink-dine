@@ -23,6 +23,12 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      - name: Create .nojekyll file
+        run: touch dist/.nojekyll
+
+      - name: Copy CNAME to dist
+        run: cp public/CNAME dist/ || echo "No CNAME file found"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

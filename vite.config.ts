@@ -10,8 +10,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // Add base for GitHub Pages deployment - change this to your repository name
-  base: "/luxe-pink-dine/",
+  // Correct base path for GitHub Pages - using relative path for better compatibility
+  base: "./",
   plugins: [
     react(),
     mode === 'development' &&
