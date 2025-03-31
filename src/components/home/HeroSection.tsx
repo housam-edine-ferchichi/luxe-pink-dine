@@ -12,10 +12,10 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/30 z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10" />
         
-        {/* Hero Background Image - Using absolute URL for GitHub Pages compatibility */}
+        {/* Hero Background Image - Using Unsplash as a reliable source */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
           <ImageOptimizer
-            src="https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images/menu/HBB.png"
+            src="https://images.unsplash.com/photo-1625937329935-287441889bce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80"
             alt="Hero background"
             className="w-full h-full object-cover object-center"
             loading="eager"

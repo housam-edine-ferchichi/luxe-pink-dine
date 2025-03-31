@@ -22,30 +22,31 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  // Handle image loading with multiple fallbacks
+  // Handle image loading with improved fallbacks
   useEffect(() => {
     const img = new Image();
     
-    // Try to normalize the URL for GitHub Pages and Lovable app
+    // Clean up the URL for proper loading
     let normalizedSrc = src;
     
-    // Handle paths that might start with "./images" which don't work in production
-    if (src.startsWith('./images')) {
-      normalizedSrc = src.replace('./images', 'https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images');
+    // Check if it's an unsplash URL which is reliable
+    if (src.includes('unsplash.com')) {
+      normalizedSrc = src;
+    } 
+    // Handle GitHub raw paths
+    else if (src.includes('github')) {
+      normalizedSrc = src;
+    }
+    // Handle local image paths from the images folder
+    else if (src.includes('/images/') || src.startsWith('images/')) {
+      // Ensure the path is properly formatted
+      const cleanPath = src.replace(/^\.?\/?images\//, 'images/');
+      normalizedSrc = `/${cleanPath}`;
     }
     
-    // For relative paths that don't include the full URL
-    if (!src.startsWith('http') && !src.startsWith('data:')) {
-      // For images that might be in the public folder
-      if (src.startsWith('/')) {
-        normalizedSrc = `https://luxe-pink-dine.lovable.app${src}`;
-      } else {
-        normalizedSrc = `https://luxe-pink-dine.lovable.app/${src}`;
-      }
-    }
+    console.log(`Attempting to load image from: ${normalizedSrc}`);
     
     img.src = normalizedSrc;
-    console.log(`Loading image from: ${normalizedSrc}`);
     
     img.onload = () => {
       setImgSrc(normalizedSrc);
@@ -55,34 +56,45 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
     };
     
     img.onerror = () => {
-      console.error(`Failed to load image: ${normalizedSrc}`);
+      console.error(`Failed to load image from path: ${normalizedSrc}`);
       
-      // If the image fails to load, try alternative sources
-      if (src.includes('/menu/')) {
-        // Try to use GitHub raw content URL
-        const githubSrc = `https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main${src.startsWith('/') ? src : '/' + src}`;
-        console.log(`Trying GitHub URL: ${githubSrc}`);
+      // First fallback - try adding base path
+      const fallback1 = `/${normalizedSrc.replace(/^\//, '')}`;
+      console.log(`Trying first fallback: ${fallback1}`);
+      
+      const altImg = new Image();
+      altImg.src = fallback1;
+      
+      altImg.onload = () => {
+        setImgSrc(fallback1);
+        setIsLoading(false);
+        setError(false);
+        console.log(`Successfully loaded from fallback path: ${fallback1}`);
+      };
+      
+      altImg.onerror = () => {
+        // Second fallback - try as absolute URL with GitHub domain
+        const repoPath = 'yourusername/luxe-pink-dine/main';
+        const fallback2 = `https://raw.githubusercontent.com/${repoPath}/${src.replace(/^\.?\/?/, '')}`;
+        console.log(`Trying second fallback: ${fallback2}`);
         
-        const altImg = new Image();
-        altImg.src = githubSrc;
+        const altImg2 = new Image();
+        altImg2.src = fallback2;
         
-        altImg.onload = () => {
-          setImgSrc(githubSrc);
+        altImg2.onload = () => {
+          setImgSrc(fallback2);
           setIsLoading(false);
           setError(false);
-          console.log(`Successfully loaded from GitHub: ${githubSrc}`);
+          console.log(`Successfully loaded from GitHub: ${fallback2}`);
         };
         
-        altImg.onerror = () => {
-          console.error(`Failed to load from GitHub: ${githubSrc}`);
+        altImg2.onerror = () => {
+          // Third fallback - use placeholder image
+          console.error(`All fallbacks failed for: ${src}`);
           setError(true);
           setIsLoading(false);
         };
-      } else {
-        // If it's an Unsplash image or another external source that's failing
-        setError(true);
-        setIsLoading(false);
-      }
+      };
     };
     
     return () => {
@@ -128,7 +140,7 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
       width={width}
       height={height}
       loading={loading}
-      onError={(e) => {
+      onError={() => {
         console.error(`Runtime error loading image: ${imgSrc}`);
         setError(true);
       }}

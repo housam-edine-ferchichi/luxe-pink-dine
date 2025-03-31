@@ -22,4 +22,12 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    assetsInlineLimit: 0, // Don't inline any assets
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Default chunking strategy
+      },
+    },
+  },
 }));

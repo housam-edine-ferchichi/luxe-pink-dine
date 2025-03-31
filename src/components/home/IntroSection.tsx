@@ -17,10 +17,10 @@ const IntroSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
-              {/* Using absolute URL for GitHub Pages compatibility */}
+              {/* Using Unsplash image as reliable fallback */}
               <ImageOptimizer
-                src="https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images/menu/Jade.png"
-                alt="Your host Jade"
+                src="https://images.unsplash.com/photo-1530047198515-516ff90fc4d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                alt="Restaurant host"
                 className="w-full h-full object-cover"
               />
               

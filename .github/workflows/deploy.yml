@@ -29,11 +29,14 @@ jobs:
       - name: Create .nojekyll file
         run: touch dist/.nojekyll
 
-      - name: Copy images to dist
-        run: cp -r images dist/
+      - name: Ensure images directory exists
+        run: mkdir -p dist/images
 
-      - name: Copy CNAME to dist if exists
-        run: cp public/CNAME dist/ || echo "No CNAME file found"
+      - name: Copy images to dist
+        run: cp -r images dist/ || echo "No images directory found"
+
+      - name: Copy public assets to dist
+        run: cp -r public/* dist/ || echo "No public directory found"
         
       - name: Create 404.html
         run: |
@@ -63,6 +66,12 @@ jobs:
             </body>
           </html>
           EOL
+
+      - name: List dist directory for debugging
+        run: ls -la dist/
+        
+      - name: List dist/images directory for debugging
+        run: ls -la dist/images/ || echo "No images directory in dist"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
