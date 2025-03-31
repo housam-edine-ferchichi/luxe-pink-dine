@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { getPublicUrl } from '@/utils/supabaseStorage';
 
 interface ImageOptimizerProps {
   src: string;
@@ -33,15 +34,11 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
     if (src.includes('unsplash.com')) {
       normalizedSrc = src;
     } 
-    // Handle GitHub raw paths
-    else if (src.includes('github')) {
-      normalizedSrc = src;
-    }
-    // Handle local image paths from the images folder
+    // Handle Supabase URLs
     else if (src.includes('/images/') || src.startsWith('images/')) {
-      // Ensure the path is properly formatted
-      const cleanPath = src.replace(/^\.?\/?images\//, 'images/');
-      normalizedSrc = `/${cleanPath}`;
+      // Use the Supabase storage URL helper
+      const cleanPath = src.replace(/^\.?\/?images\//, '');
+      normalizedSrc = getPublicUrl(cleanPath);
     }
     
     console.log(`Attempting to load image from: ${normalizedSrc}`);
@@ -58,43 +55,48 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
     img.onerror = () => {
       console.error(`Failed to load image from path: ${normalizedSrc}`);
       
-      // First fallback - try adding base path
-      const fallback1 = `/${normalizedSrc.replace(/^\//, '')}`;
-      console.log(`Trying first fallback: ${fallback1}`);
-      
-      const altImg = new Image();
-      altImg.src = fallback1;
-      
-      altImg.onload = () => {
-        setImgSrc(fallback1);
-        setIsLoading(false);
-        setError(false);
-        console.log(`Successfully loaded from fallback path: ${fallback1}`);
-      };
-      
-      altImg.onerror = () => {
-        // Second fallback - try as absolute URL with GitHub domain
-        const repoPath = 'yourusername/luxe-pink-dine/main';
-        const fallback2 = `https://raw.githubusercontent.com/${repoPath}/${src.replace(/^\.?\/?/, '')}`;
-        console.log(`Trying second fallback: ${fallback2}`);
+      // First fallback - try direct URL to Supabase
+      if (!src.includes('unsplash.com')) {
+        const supabaseUrl = getPublicUrl(src);
+        console.log(`Trying Supabase URL fallback: ${supabaseUrl}`);
         
-        const altImg2 = new Image();
-        altImg2.src = fallback2;
+        const altImg = new Image();
+        altImg.src = supabaseUrl;
         
-        altImg2.onload = () => {
-          setImgSrc(fallback2);
+        altImg.onload = () => {
+          setImgSrc(supabaseUrl);
           setIsLoading(false);
           setError(false);
-          console.log(`Successfully loaded from GitHub: ${fallback2}`);
+          console.log(`Successfully loaded from Supabase URL: ${supabaseUrl}`);
         };
         
-        altImg2.onerror = () => {
-          // Third fallback - use placeholder image
-          console.error(`All fallbacks failed for: ${src}`);
-          setError(true);
-          setIsLoading(false);
+        altImg.onerror = () => {
+          // Second fallback - try as absolute URL with correct base path
+          const fallback2 = `/${src.replace(/^\//, '')}`;
+          console.log(`Trying base path fallback: ${fallback2}`);
+          
+          const altImg2 = new Image();
+          altImg2.src = fallback2;
+          
+          altImg2.onload = () => {
+            setImgSrc(fallback2);
+            setIsLoading(false);
+            setError(false);
+            console.log(`Successfully loaded from fallback path: ${fallback2}`);
+          };
+          
+          altImg2.onerror = () => {
+            // Third fallback - use placeholder image or show error
+            console.error(`All fallbacks failed for: ${src}`);
+            setError(true);
+            setIsLoading(false);
+          };
         };
-      };
+      } else {
+        // For Unsplash images that fail, just show error
+        setError(true);
+        setIsLoading(false);
+      }
     };
     
     return () => {

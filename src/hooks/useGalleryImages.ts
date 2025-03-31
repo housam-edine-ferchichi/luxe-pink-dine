@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/use-toast";
 import { GalleryImage } from "@/types/gallery";
+import { getPublicUrl } from '@/utils/supabaseStorage';
 
 export const useGalleryImages = () => {
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
@@ -19,11 +20,11 @@ export const useGalleryImages = () => {
         throw error;
       }
       
-      if (data) {
+      if (data && data.length > 0) {
         // Transform the data to match the format we need
         const transformedData = data.map(img => ({
           id: img.id,
-          src: img.image_url,
+          src: getPublicUrl(img.image_url),
           alt: img.title || 'Gallery image',
           category: img.description?.toLowerCase().includes('interior') ? 'interior' : 
                   img.description?.toLowerCase().includes('drink') ? 'drinks' :
@@ -34,6 +35,7 @@ export const useGalleryImages = () => {
       } else {
         // If no data from Supabase, use fallback images
         setGalleryImages(fallbackImages);
+        console.log("No gallery images found in Supabase, using fallbacks");
       }
     } catch (error) {
       console.error('Error fetching gallery images:', error);

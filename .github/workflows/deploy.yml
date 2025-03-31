@@ -25,6 +25,8 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_URL: ""
+          VITE_SUPABASE_URL: "https://sjdunwlftwdzeetlxpxj.supabase.co"
+          VITE_SUPABASE_PUBLIC_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqZHVud2xmdHdkemVldGx4cHhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNTkwNDAsImV4cCI6MjA1ODczNTA0MH0.UdyZYOY4KNFJHizfUXDcmNtzrAFYjENOC9goRl0wd1c"
         
       - name: Create .nojekyll file
         run: touch dist/.nojekyll
@@ -32,8 +34,8 @@ jobs:
       - name: Ensure images directory exists
         run: mkdir -p dist/images
 
-      - name: Copy images to dist
-        run: cp -r images dist/ || echo "No images directory found"
+      - name: Copy local images to dist (if any)
+        run: cp -r images dist/ || echo "No local images directory found"
 
       - name: Copy public assets to dist
         run: cp -r public/* dist/ || echo "No public directory found"
