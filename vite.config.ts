@@ -1,33 +1,13 @@
-// filepath: /Users/rio/Desktop/images/luxe-pink-dine/vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-  },
-  base: "/luxe-pink-dine/", // Set this to your repository name
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+export default defineConfig({
+  base: "/luxe-pink-dine/", // Replace with your repository name
+  plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(__dirname, "./src"), // Map "@" to the "src" directory
     },
   },
-  build: {
-    assetsInlineLimit: 0,
-    rollupOptions: {
-      input: "./index.html", // Ensure Rollup knows the entry point
-    
-      output: {
-        manualChunks: undefined,
-      },
-    },
-  },
-}));
+});
