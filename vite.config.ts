@@ -23,6 +23,8 @@ export default defineConfig(({ mode }) => ({
   build: {
     assetsInlineLimit: 0,
     rollupOptions: {
+      input: "./index.html", // Ensure Rollup knows the entry point
+    
       output: {
         manualChunks: undefined,
       },
