@@ -80,7 +80,7 @@ const GalleryManager = () => {
     }
   };
   
-  const handleDeleteImage = async (id: string | number) => {
+  const handleDeleteImage = async (id: string) => {
     try {
       const { error } = await supabase
         .from('gallery_images')
@@ -136,7 +136,7 @@ const GalleryManager = () => {
                   <Button 
                     variant="destructive"
                     size="sm"
-                    onClick={() => handleDeleteImage(image.id)}
+                    onClick={() => handleDeleteImage(String(image.id))}
                   >
                     Delete
                   </Button>
