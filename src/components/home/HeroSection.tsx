@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   return (
@@ -10,11 +11,11 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/30 z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10" />
         
-        {/* Hero Background Image - Replace with your image */}
+        {/* Hero Background Image - Using absolute URL for GitHub Pages compatibility */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: "url('/images/menu/HBB.png')",
+            backgroundImage: "url('./images/menu/HBB.png')",
             backgroundPosition: "center 30%"
           }}
         />
@@ -46,9 +47,9 @@ const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <button className="btn-outline">
+          <Link to="/menu" className="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
             Explore Menu
-          </button>
+          </Link>
         </motion.div>
         
         {/* Scroll indicator */}

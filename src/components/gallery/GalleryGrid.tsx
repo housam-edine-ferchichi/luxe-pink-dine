@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Skeleton } from "@/components/ui/skeleton";
+import ImageOptimizer from "@/components/common/ImageOptimizer";
 
 interface GalleryImage {
   id: string | number;
@@ -40,7 +41,7 @@ const GalleryGrid = ({ images, loading, onImageClick }: GalleryGridProps) => {
           transition={{ duration: 0.4, delay: index * 0.05 }}
           onClick={() => onImageClick(image)}
         >
-          <img 
+          <ImageOptimizer 
             src={image.src}
             alt={image.alt}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

@@ -6,9 +6,10 @@ const BookingImage = () => {
     <div className="relative">
       <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
         <img 
-          src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+          src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
           alt="Restaurant interior" 
           className="w-full h-full object-cover"
+          loading="lazy"
         />
       </div>
       

@@ -16,10 +16,10 @@ const IntroSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
-              {/* Replace with your high-quality restaurant interior image */}
+              {/* Using relative path for GitHub Pages compatibility */}
               <img 
-                src="images/menu/Jade.png" 
-                alt="Your host Jade " 
+                src="./images/menu/Jade.png" 
+                alt="Your host Jade" 
                 className="w-full h-full object-cover"
               />
               
@@ -52,7 +52,7 @@ const IntroSection: React.FC = () => {
                 A Culinary Journey with Jade
               </h2>
               <p className="mt-4 body-lg text-gray-700 dark:text-gray-300">
-                Je suis Jade, 34 ans, passionnée de pâtisserie et pin-up dans l’âme depuis de nombreuses années.
+                Je suis Jade, 34 ans, passionnée de pâtisserie et pin-up dans l'âme depuis de nombreuses années.
 Maman de 3 princesses en bas âge, dont une super héroïne, j'aime les défis et mène des combats sans jamais me décourager pour arriver au bout de mes rêves.
 J'ai les cheveux roses depuis 10 ans bientôt et ma chevelure de princesse, c'est uniquement grâce à la best @lamaisondublondbyflorinacannet.
 J'ai un tempérament de feu et donne tout pour ceux que j'aime, mais aussi pour mon travail !! Je suis une vraie acharnée et ne lâche jamais l'affaire !
