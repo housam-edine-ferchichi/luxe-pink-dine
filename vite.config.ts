@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // Use empty string for base path to ensure assets load correctly
+  // Use empty string for base path to ensure assets load correctly on GitHub Pages
   base: "",
   plugins: [
     react(),
