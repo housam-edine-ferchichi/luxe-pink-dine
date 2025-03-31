@@ -1,82 +1,30 @@
-
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 16
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: npm install
 
-      - name: Build
+      - name: Build project
         run: npm run build
-        env:
-          VITE_BASE_URL: ""
-          VITE_SUPABASE_URL: "https://sjdunwlftwdzeetlxpxj.supabase.co"
-          VITE_SUPABASE_PUBLIC_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqZHVud2xmdHdkemVldGx4cHhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMxNTkwNDAsImV4cCI6MjA1ODczNTA0MH0.UdyZYOY4KNFJHizfUXDcmNtzrAFYjENOC9goRl0wd1c"
-        
-      - name: Create .nojekyll file
-        run: touch dist/.nojekyll
-
-      - name: Ensure images directory exists
-        run: mkdir -p dist/images
-
-      - name: Copy local images to dist (if any)
-        run: cp -r images dist/ || echo "No local images directory found"
-
-      - name: Copy public assets to dist
-        run: cp -r public/* dist/ || echo "No public directory found"
-        
-      - name: Create 404.html
-        run: |
-          cat > dist/404.html << 'EOL'
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <meta charset="utf-8">
-              <title>Gourmande is 50's</title>
-              <script type="text/javascript">
-                // Single Page Apps for GitHub Pages
-                // MIT License
-                // https://github.com/rafgraph/spa-github-pages
-                var pathSegmentsToKeep = 0;
-                var l = window.location;
-                l.replace(
-                  l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-                  l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-                  l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-                  (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-                  l.hash
-                );
-              </script>
-            </head>
-            <body>
-              Redirecting...
-            </body>
-          </html>
-          EOL
-
-      - name: List dist directory for debugging
-        run: ls -la dist/
-        
-      - name: List dist/images directory for debugging
-        run: ls -la dist/images/ || echo "No images directory in dist"
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: dist
-          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
