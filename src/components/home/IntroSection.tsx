@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import ImageOptimizer from '@/components/common/ImageOptimizer';
 
 const IntroSection: React.FC = () => {
   return (
@@ -16,10 +17,10 @@ const IntroSection: React.FC = () => {
             viewport={{ once: true }}
           >
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
-              {/* Using relative path for GitHub Pages compatibility */}
-              <img 
-                src="./images/menu/Jade.png" 
-                alt="Your host Jade" 
+              {/* Using absolute URL for GitHub Pages compatibility */}
+              <ImageOptimizer
+                src="https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images/menu/Jade.png"
+                alt="Your host Jade"
                 className="w-full h-full object-cover"
               />
               

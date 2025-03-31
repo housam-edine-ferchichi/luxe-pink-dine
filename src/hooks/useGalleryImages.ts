@@ -59,7 +59,7 @@ export const useGalleryImages = () => {
   };
 };
 
-// Update paths to be absolute URLs for GitHub Pages compatibility
+// Use guaranteed working images from Unsplash with optimized sizes
 export const fallbackImages: GalleryImage[] = [
   {
     id: 1,

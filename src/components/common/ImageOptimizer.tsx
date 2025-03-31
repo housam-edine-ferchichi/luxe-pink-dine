@@ -22,40 +22,66 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  // Handle image loading
+  // Handle image loading with multiple fallbacks
   useEffect(() => {
     const img = new Image();
-    img.src = src;
+    
+    // Try to normalize the URL for GitHub Pages and Lovable app
+    let normalizedSrc = src;
+    
+    // Handle paths that might start with "./images" which don't work in production
+    if (src.startsWith('./images')) {
+      normalizedSrc = src.replace('./images', 'https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images');
+    }
+    
+    // For relative paths that don't include the full URL
+    if (!src.startsWith('http') && !src.startsWith('data:')) {
+      // For images that might be in the public folder
+      if (src.startsWith('/')) {
+        normalizedSrc = `https://luxe-pink-dine.lovable.app${src}`;
+      } else {
+        normalizedSrc = `https://luxe-pink-dine.lovable.app/${src}`;
+      }
+    }
+    
+    img.src = normalizedSrc;
+    console.log(`Loading image from: ${normalizedSrc}`);
     
     img.onload = () => {
-      setImgSrc(src);
+      setImgSrc(normalizedSrc);
       setIsLoading(false);
+      setError(false);
+      console.log(`Successfully loaded image: ${normalizedSrc}`);
     };
     
     img.onerror = () => {
-      console.error(`Failed to load image: ${src}`);
-      setError(true);
-      setIsLoading(false);
+      console.error(`Failed to load image: ${normalizedSrc}`);
       
-      // Try to load the image with different path patterns
-      if (src.startsWith('/')) {
-        const newSrc = `.${src}`;
-        console.log(`Trying alternative path: ${newSrc}`);
+      // If the image fails to load, try alternative sources
+      if (src.includes('/menu/')) {
+        // Try to use GitHub raw content URL
+        const githubSrc = `https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main${src.startsWith('/') ? src : '/' + src}`;
+        console.log(`Trying GitHub URL: ${githubSrc}`);
+        
         const altImg = new Image();
-        altImg.src = newSrc;
+        altImg.src = githubSrc;
+        
         altImg.onload = () => {
-          setImgSrc(newSrc);
+          setImgSrc(githubSrc);
+          setIsLoading(false);
           setError(false);
+          console.log(`Successfully loaded from GitHub: ${githubSrc}`);
         };
-      } else if (src.startsWith('./')) {
-        const newSrc = src.substring(2);
-        console.log(`Trying alternative path without ./: ${newSrc}`);
-        const altImg = new Image();
-        altImg.src = newSrc;
-        altImg.onload = () => {
-          setImgSrc(newSrc);
-          setError(false);
+        
+        altImg.onerror = () => {
+          console.error(`Failed to load from GitHub: ${githubSrc}`);
+          setError(true);
+          setIsLoading(false);
         };
+      } else {
+        // If it's an Unsplash image or another external source that's failing
+        setError(true);
+        setIsLoading(false);
       }
     };
     
@@ -102,6 +128,10 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
       width={width}
       height={height}
       loading={loading}
+      onError={(e) => {
+        console.error(`Runtime error loading image: ${imgSrc}`);
+        setError(true);
+      }}
     />
   );
 };

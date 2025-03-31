@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ImageOptimizer from '@/components/common/ImageOptimizer';
 
 const HeroSection: React.FC = () => {
   return (
@@ -12,13 +13,14 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10" />
         
         {/* Hero Background Image - Using absolute URL for GitHub Pages compatibility */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: "url('./images/menu/HBB.png')",
-            backgroundPosition: "center 30%"
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
+          <ImageOptimizer
+            src="https://raw.githubusercontent.com/yourusername/luxe-pink-dine/main/images/menu/HBB.png"
+            alt="Hero background"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </div>
       </div>
       
       {/* Content */}
