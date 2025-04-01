@@ -16,7 +16,7 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <base href="/luxe-pink-dine/"> <!-- Ajoutez cette ligne pour respecter la configuration "base" -->
+    <base href="./luxe-pink-dine/"> <!-- Ajoutez cette ligne pour respecter la configuration "base" -->
 
     <!-- GitHub Pages SPA redirect script -->
     <script type="text/javascript">
@@ -31,6 +31,7 @@
           window.history.replaceState(null, null,
               l.pathname.slice(0, -1) + decoded + l.hash
           );
+          
         }
       }(window.location))
     </script>
@@ -40,7 +41,7 @@
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script type="module" href="./src/main.tsx"></script> <!-- Corrigez le chemin si nécessaire -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <link rel="stylesheet" href="/src/index.css">
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

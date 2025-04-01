@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 export default defineConfig({
-  base: "./", // Chemin de base pour GitHub Pages
-  plugins: [react()],
+  base: "/luxe-pink-dine/",
+    plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
