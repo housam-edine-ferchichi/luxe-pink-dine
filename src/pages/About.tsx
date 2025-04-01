@@ -92,7 +92,7 @@ const About = () => {
             >
               <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1564759224907-65a7002a48b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" 
+                  src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//jade%20host.png" 
                   alt="Gourmande is 50's  restaurant exterior" 
                   className="w-full h-full object-cover"
                 />
