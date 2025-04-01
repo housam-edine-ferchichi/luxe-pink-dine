@@ -148,7 +148,7 @@ const Navbar = () => {
               <span>Instagram</span>
             </a>
             <a 
-              href="https://ubereats.com" 
+              href="https://www.ubereats.com/fr/store/gourmande-is-50s/kDSnXxdZXmuDEGD6286EOQ" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-rose-500"

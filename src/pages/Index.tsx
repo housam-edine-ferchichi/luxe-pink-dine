@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
 import HeroSection from '../components/home/HeroSection';
 import IntroSection from '../components/home/IntroSection';
@@ -141,7 +142,7 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <a href="/menu" className="btn-secondary">View Full Menu</a>
+              <Link to="/menu" className="btn-secondary">View Full Menu</Link>
             </motion.div>
           </div>
         </div>
@@ -200,19 +201,19 @@ const Index = () => {
           </div>
           
           <div className="mt-12 text-center">
-            <motion.a
-              href="/testimonials"
-              className="inline-flex items-center text-rose-500 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 font-medium transition-colors"
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <span>View all reviews</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </motion.a>
+              <Link to="/testimonials" className="inline-flex items-center text-rose-500 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 font-medium transition-colors">
+                <span>View all reviews</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -243,9 +244,9 @@ const Index = () => {
                 Join us for an unforgettable culinary journey through the flavors of France. 
                 Create lasting memories with us.
               </p>
-              <a href="/menu" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-rose-600 hover:bg-rose-50 transition-colors rounded-md font-medium">
+              <Link to="/menu" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-rose-600 hover:bg-rose-50 transition-colors rounded-md font-medium">
                 Explore Our Menu
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
