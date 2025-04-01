@@ -93,7 +93,7 @@ const About = () => {
               <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//jade%20host.png" 
-                  alt="Gourmande is 50's  restaurant exterior" 
+                  alt="You're Host" 
                   className="w-full h-full object-cover"
                 />
                 
@@ -110,24 +110,24 @@ const About = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">Our Story</span>
+              <span className="text-sm uppercase tracking-wider text-rose-500 dark:text-rose-400 font-medium">Our story</span>
               <h1 className="heading-lg mt-2 text-gray-900 dark:text-white">
-                About Gourmande is 50's 
+                About Jade 
               </h1>
               <p className="mt-4 body-lg text-gray-600 dark:text-gray-300">
-                Founded in 2014, Gourmande is 50's  was born from Chef Antoine Dubois' vision to create a dining experience that 
-                honors the rich culinary heritage of France while embracing contemporary innovation and artistic presentation.
+              Je suis Jade, 34 ans, passionnée de pâtisserie et pin-up dans l’âme depuis de nombreuses années.
+
               </p>
               <p className="mt-4 body-md text-gray-600 dark:text-gray-300">
-                What began as a passion project has evolved into one of Paris' most celebrated restaurants, 
-                earning two Michelin stars and international acclaim for its exceptional cuisine, elegant atmosphere, 
-                and impeccable service.
+              Maman de 3 princesses en bas âge, dont une super héroïne, j'aime les défis et mène des combats sans jamais me décourager pour arriver au bout de mes rêves.
+J'ai les cheveux roses depuis 10 ans bientôt et ma chevelure de princesse, c'est uniquement grâce à la best @lamaisondublondbyflorinacannet.
+J'ai un tempérament de feu et donne tout pour ceux que j'aime, mais aussi pour mon travail !! Je suis une vraie acharnée et ne lâche jamais l'affaire !
+Ma devise : toujours croire en ses rêves !
               </p>
               
               {/* Quote */}
               <blockquote className="mt-8 pl-4 border-l-4 border-rose-500 dark:border-rose-400 italic text-gray-700 dark:text-gray-300">
-                "At Gourmande is 50's , we believe dining is not merely about sustenance, but about creating moments of joy 
-                and connection through the art of gastronomy."
+                "🧁La gourmandise commence quand on n’a plus faim !."
               </blockquote>
             </motion.div>
           </div>
