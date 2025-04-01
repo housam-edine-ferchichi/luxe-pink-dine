@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/30 z-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10" />
         
-        {/* Hero Background Image - Using Unsplash as a reliable source */}
+        {/* Hero Background Image */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
           <ImageOptimizer
             src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//gateau.png"

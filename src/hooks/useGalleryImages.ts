@@ -14,7 +14,8 @@ export const useGalleryImages = () => {
       setLoading(true);
       const { data, error } = await supabase
         .from('gallery_images')
-        .select('*');
+        .select('*')
+        .order('created_at', { ascending: false });
       
       if (error) {
         throw error;
@@ -32,10 +33,6 @@ export const useGalleryImages = () => {
                   img.description?.toLowerCase().includes('kitchen') ? 'kitchen' : 'food'
         }));
         setGalleryImages(transformedData);
-      } else {
-        // If no data from Supabase, use fallback images
-        setGalleryImages(fallbackImages);
-        console.log("No gallery images found in Supabase, using fallbacks");
       }
     } catch (error) {
       console.error('Error fetching gallery images:', error);
@@ -61,30 +58,30 @@ export const useGalleryImages = () => {
   };
 };
 
-// Use guaranteed working images from Unsplash with optimized sizes
+// Use guaranteed working images from Unsplash with optimized sizes as fallbacks
 export const fallbackImages: GalleryImage[] = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    alt: 'Restaurant interior',
-    category: 'interior'
-  },
-  {
-    id: 2,
-    src: 'https://images.unsplash.com/photo-1546195885-9a82a6bc621a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    alt: 'Table setting',
-    category: 'interior'
-  },
-  {
-    id: 3,
-    src: 'https://images.unsplash.com/photo-1516717334666-8e9f2c21c702?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    alt: 'Delicious dessert',
+    src: 'https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//483936436_18487917181058803_7771839338171818453_n.webp',
+    alt: 'Gourmande special cake',
     category: 'food'
   },
   {
+    id: 2,
+    src: 'https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//484984049_17905482798128083_6103084717711498149_n.jpg',
+    alt: 'Special event announcement',
+    category: 'events'
+  },
+  {
+    id: 3,
+    src: 'https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//483459635_17949787118941329_1338514172780654550_n.jpg',
+    alt: 'Birthday celebration',
+    category: 'events'
+  },
+  {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1482275548304-a58859dc31b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
-    alt: 'Signature cocktail',
-    category: 'drinks'
+    src: 'https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//480325040_17947144496941329_7830754025186764662_n.jpg',
+    alt: 'Eco-friendly celebration cake',
+    category: 'food'
   }
 ];

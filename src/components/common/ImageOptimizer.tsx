@@ -35,6 +35,10 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
       normalizedSrc = src;
     } 
     // Handle Supabase URLs
+    else if (src.includes('sjdunwlftwdzeetlxpxj.supabase.co')) {
+      normalizedSrc = src;
+    }
+    // If it's a relative path in the images folder
     else if (src.includes('/images/') || src.startsWith('images/')) {
       // Use the Supabase storage URL helper
       const cleanPath = src.replace(/^\.?\/?images\//, '');
@@ -56,7 +60,7 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
       console.error(`Failed to load image from path: ${normalizedSrc}`);
       
       // First fallback - try direct URL to Supabase
-      if (!src.includes('unsplash.com')) {
+      if (!src.includes('unsplash.com') && !src.includes('sjdunwlftwdzeetlxpxj.supabase.co')) {
         const supabaseUrl = getPublicUrl(src);
         console.log(`Trying Supabase URL fallback: ${supabaseUrl}`);
         
@@ -86,14 +90,14 @@ const ImageOptimizer: React.FC<ImageOptimizerProps> = ({
           };
           
           altImg2.onerror = () => {
-            // Third fallback - use placeholder image or show error
+            // Last fallback - use placeholder image or show error
             console.error(`All fallbacks failed for: ${src}`);
             setError(true);
             setIsLoading(false);
           };
         };
       } else {
-        // For Unsplash images that fail, just show error
+        // For Unsplash images or Supabase URLs that fail, show error
         setError(true);
         setIsLoading(false);
       }
