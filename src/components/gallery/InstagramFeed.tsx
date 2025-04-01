@@ -16,7 +16,7 @@ const instagramPosts = [
   {
     id: 2,
     imageUrl: 'https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//484984049_17905482798128083_6103084717711498149_n.jpg',
-    caption: '📅 Samedi 05 avril 2025🕙 De 10h à 17h (sans réservation)📍 La Roulotte de Gourmande is 50's – Parking Auchan à Mouans-Sartoux',
+    caption: "📅 Samedi 05 avril 2025🕙 De 10h à 17h (sans réservation)📍 La Roulotte de Gourmande is 50's – Parking Auchan à Mouans-Sartoux",
     likes: 62,
     date: '15 Mars 2025'
   },
@@ -37,7 +37,7 @@ const instagramPosts = [
   {
     id: 5,
     imageUrl: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
-    caption: 'Layer cake sur le thème des black pink pour l’anniversaire de Callie.',
+    caption: "Layer cake sur le thème des black pink pour l'anniversaire de Callie.",
     likes: 51,
     date: '2 weeks ago'
   },
