@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 export default defineConfig({
+  
+  // chunkSizeWarningLimit moved to build object
   base: "/luxe-pink-dine/", // Replace with your repository name
   plugins: [react()],
   resolve: {
@@ -15,9 +17,15 @@ export default defineConfig({
     emptyOutDir: true, // Nettoie le répertoire de sortie avant chaque construction
     outDir: "dist", // Spécifie le répertoire de sortie pour la construction
     manifest: true, // Génère un fichier manifest pour diagnostiquer les problèmes
+    
+    chunkSizeWarningLimit: 1000, // Augmente la limite à 1000 kB
     rollupOptions: {
-      input: path.resolve(__dirname, "index.html"), // Ajoute explicitement index.html comme point d'entrée
-      external: ['nom-du-module-problématique'] // Remplacez 'nom-du-module-problématique' par le nom du module à externaliser
-    }
-  }
-});
+      input: path.resolve(__dirname, "index.html"),
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"], // Place les dépendances principales dans un chunk séparé
+            },
+          },
+        },
+      },
+    });
