@@ -16,7 +16,7 @@ const menuCategories = [
         price: '€5.50',
         isSweet: false,
         isSalty: true,
-        image: 'housam-edine-ferchichi/luxe-pink-dine/images/menu/egg muffin cheddar.png',
+        image: 'images/menu/egg muffin cheddar.png',
       },
       {
         name: 'Egg muffin bacon cheddar ',

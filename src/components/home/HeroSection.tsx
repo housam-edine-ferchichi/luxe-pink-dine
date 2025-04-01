@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
         {/* Hero Background Image - Using Unsplash as a reliable source */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
           <ImageOptimizer
-            src="images/menu/485007634_17951211818941329_4706411376163970609_n..jpg"
+            src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//gateau.png"
             alt="Hero background"
             className="w-full h-full object-cover object-center"
             loading="eager"
