@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/luxe-pink-dine/",
+  base: "./",
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
