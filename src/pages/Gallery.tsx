@@ -10,7 +10,6 @@ import GalleryFilters from '@/components/gallery/GalleryFilters';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import GalleryQuote from '@/components/gallery/GalleryQuote';
-import AdminNotice from '@/components/gallery/AdminNotice';
 import InstagramFeed from '@/components/gallery/InstagramFeed';
 
 const Gallery = () => {
@@ -67,8 +66,6 @@ const Gallery = () => {
       <InstagramFeed />
       
       <GalleryQuote />
-      
-      <AdminNotice />
     </div>
   );
 };
