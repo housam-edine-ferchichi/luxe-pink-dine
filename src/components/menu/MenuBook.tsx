@@ -53,12 +53,12 @@ const MenuBook: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 w-full h-full"
+            className="absolute inset-0 w-full h-full flex items-center justify-center"
           >
             <img
               src={menuPages[currentPage].image}
               alt={`Menu page ${currentPage + 1}`}
-              className="max-w-full max-h-full object-cover rounded-lg"
+              className="max-w-full max-h-full object-contain rounded-lg"
               style={{ maxWidth: '1024px', maxHeight: '768px', margin: 'auto' }} // Limite la résolution
             />
           </motion.div>
