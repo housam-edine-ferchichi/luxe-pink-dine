@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
         {/* Hero Background Image */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
           <ImageOptimizer
-            src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//gateau.png"
+            src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//gateau.png"
             alt="Hero background"
             className="w-full h-full object-cover object-center"
             loading="eager"

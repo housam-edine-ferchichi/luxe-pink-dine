@@ -6,27 +6,27 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const menuPages = [
   {
     id: 1,
-    image: "/lovable-uploads/17f23997-b572-4518-8385-76094eb6b032.png",
-    title: "Hot & Fresh Drinks Menu"
+    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//carte%20brunch.d4476e96bc4825115954.png",
+    title: "Menu Brunch"
   },
   {
     id: 2,
-    image: "/lovable-uploads/5dbc29bc-d1ce-43f1-9ef8-08125637a91c.png",
+    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//hot%20drink%20menu.a4f764ca6cfb47878165.png",
     title: "Hot Drinks Menu"
   },
   {
     id: 3,
-    image: "/lovable-uploads/0a67fe32-da76-46f8-9f29-d831e01f2df3.png",
+    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//hot%20&%20fresh%20drink%20menu%202.330c75af97cfea499fe7.png",
     title: "Menu Brunch"
   },
   {
     id: 4,
-    image: "/lovable-uploads/f4fd0fdd-7cdb-4664-bd16-abe2f532e2ba.png",
+    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//lunch.a80d15764bf5773c4589.png",
     title: "Menu: Les Bagels"
   },
   {
     id: 5,
-    image: "/lovable-uploads/e5c85dd7-c30f-47bf-9582-ecdfea0bddc6.png",
+    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//tarifs.810ffafff74e8e8736d3.png",
     title: "Prestations Sur Commande"
   }
 ];

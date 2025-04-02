@@ -19,7 +19,7 @@ const IntroSection: React.FC = () => {
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
               {/* Using Unsplash image as reliable fallback */}
               <ImageOptimizer
-                src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//Jade.png"
+                src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//Jade.webp"
                 alt="Restaurant host"
                 className="w-full h-full object-cover"
               />

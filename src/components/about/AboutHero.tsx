@@ -16,7 +16,7 @@ const AboutHero: React.FC = () => {
           >
             <div className="aspect-square relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//jade%20host.png" 
+                src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//jade%20host.webp" 
                 alt="You're Host" 
                 className="w-full h-full object-cover"
               />

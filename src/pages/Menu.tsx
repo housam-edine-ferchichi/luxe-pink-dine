@@ -52,8 +52,8 @@ const Menu = () => {
               <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
                 <div className="w-24 h-24 rounded-full overflow-hidden">
                   <img 
-                    src="images/menu/jade host.png" 
-                    alt="Chef Antoine Dubois" 
+                    src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//jade%20host.webp" 
+                    alt="You're Host Jade" 
                     className="w-full h-full object-cover"
                   />
                 </div>
