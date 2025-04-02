@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
-import path from 'path';
+import MenuBook from '../components/menu/MenuBook';
 
 // Menu data
 const menuCategories = [
@@ -301,6 +300,7 @@ const menuCategories = [
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('Menu Brunch');
   const [filter, setFilter] = useState('all');
+  const [viewMode, setViewMode] = useState('book'); // 'book' or 'list'
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -339,124 +339,162 @@ const Menu = () => {
         </div>
       </section>
       
-      {/* Menu Categories Navigation */}
-      <section className="sticky top-20 z-30 bg-white/95 dark:bg-midnight-950/95 backdrop-blur-md py-4 shadow-sm">
+      {/* View Mode Toggle */}
+      <section className="py-4">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Category Navigation */}
-            <div className="flex overflow-x-auto space-x-2 pb-2 md:pb-0 w-full md:w-auto">
-              {menuCategories.map(category => (
-                <button
-                  key={category.id}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                    activeCategory === category.id
-                      ? 'bg-rose-500 text-white'
-                      : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                  }`}
-                  onClick={() => setActiveCategory(category.id)}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
-            
-            {/* Filters */}
-            <div className="flex space-x-2 w-full md:w-auto justify-end">
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  filter === 'all'
-                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                }`}
-                onClick={() => setFilter('all')}
-              >
-                All Items
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  filter === 'Salty'
-                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                }`}
-                onClick={() => setFilter('Salty')}
-              >
-                Salty
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  filter === 'Sweet'
-                    ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
-                    : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
-                }`}
-                onClick={() => setFilter('Sweet')}
-              >
-                Sweet
-              </button>
-            </div>
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={() => setViewMode('book')} 
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                viewMode === 'book' 
+                  ? 'bg-rose-500 text-white' 
+                  : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              Menu Book
+            </button>
+            <button 
+              onClick={() => setViewMode('list')} 
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
+                viewMode === 'list' 
+                  ? 'bg-rose-500 text-white' 
+                  : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              Menu List
+            </button>
           </div>
         </div>
       </section>
+
+      {/* Menu Book View */}
+      {viewMode === 'book' && (
+        <MenuBook />
+      )}
       
-      {/* Menu Items */}
-      <section className="py-12 px-6">
-        <div className="container mx-auto">
-          {menuCategories.map(category => (
-            <div
-              key={category.id}
-              className={`mb-16 ${activeCategory === category.id ? 'block' : 'hidden'}`}
-            >
-              <h2 className="heading-md text-gray-900 dark:text-white mb-8">
-                {category.name}
-              </h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                {filterItems(category.items).map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white dark:bg-midnight-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
+      {/* Menu List View */}
+      {viewMode === 'list' && (
+        <>
+          {/* Menu Categories Navigation */}
+          <section className="sticky top-20 z-30 bg-white/95 dark:bg-midnight-950/95 backdrop-blur-md py-4 shadow-sm">
+            <div className="container mx-auto px-4">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                {/* Category Navigation */}
+                <div className="flex overflow-x-auto space-x-2 pb-2 md:pb-0 w-full md:w-auto">
+                  {menuCategories.map(category => (
+                    <button
+                      key={category.id}
+                      className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                        activeCategory === category.id
+                          ? 'bg-rose-500 text-white'
+                          : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                      }`}
+                      onClick={() => setActiveCategory(category.id)}
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                </div>
+                
+                {/* Filters */}
+                <div className="flex space-x-2 w-full md:w-auto justify-end">
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                      filter === 'all'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('all')}
                   >
-                    <div className="md:w-1/3 h-48 md:h-auto relative">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
-                        className="w-full h-full object-cover"
-                      />
-                      {item.isSweet && (
-                        <div className="absolute top-2 left-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                          Sweet
-                        </div>
-                      )}
-                      {item.isSalty && (
-                        <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                          Salty
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6 md:w-2/3 flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="font-serif text-xl font-semibold text-gray-900 dark:text-white">
-                            {item.name}
-                          </h3>
-                          <span className="text-rose-600 dark:text-rose-400 font-medium ml-2 whitespace-nowrap">
-                            {item.price}
-                          </span>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    All Items
+                  </button>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                      filter === 'Salty'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('Salty')}
+                  >
+                    Salty
+                  </button>
+                  <button
+                    className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                      filter === 'Sweet'
+                        ? 'bg-midnight-900 dark:bg-white text-white dark:text-midnight-900'
+                        : 'bg-gray-100 dark:bg-midnight-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-midnight-700'
+                    }`}
+                    onClick={() => setFilter('Sweet')}
+                  >
+                    Sweet
+                  </button>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
+          
+          {/* Menu Items */}
+          <section className="py-12 px-6">
+            <div className="container mx-auto">
+              {menuCategories.map(category => (
+                <div
+                  key={category.id}
+                  className={`mb-16 ${activeCategory === category.id ? 'block' : 'hidden'}`}
+                >
+                  <h2 className="heading-md text-gray-900 dark:text-white mb-8">
+                    {category.name}
+                  </h2>
+                  
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {filterItems(category.items).map((item, index) => (
+                      <motion.div
+                        key={index}
+                        className="bg-white dark:bg-midnight-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                      >
+                        <div className="md:w-1/3 h-48 md:h-auto relative">
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            className="w-full h-full object-cover"
+                          />
+                          {item.isSweet && (
+                            <div className="absolute top-2 left-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                              Sweet
+                            </div>
+                          )}
+                          {item.isSalty && (
+                            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                              Salty
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-6 md:w-2/3 flex flex-col justify-between">
+                          <div>
+                            <div className="flex justify-between items-start mb-2">
+                              <h3 className="font-serif text-xl font-semibold text-gray-900 dark:text-white">
+                                {item.name}
+                              </h3>
+                              <span className="text-rose-600 dark:text-rose-400 font-medium ml-2 whitespace-nowrap">
+                                {item.price}
+                              </span>
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
       
       {/* Chef's Note */}
       <section className="py-16 px-6 bg-gray-50 dark:bg-midnight-900">
@@ -487,7 +525,7 @@ const Menu = () => {
               </div>
               
               <blockquote className="text-gray-600 dark:text-gray-300 italic">
-                "🧁La gourmandise commence quand on n’a plus faim ! @gourmande_is_50s."
+                "🧁La gourmandise commence quand on n'a plus faim ! @gourmande_is_50s."
               </blockquote>
               
               <div className="mt-6 text-right">
@@ -501,9 +539,6 @@ const Menu = () => {
           </div>
         </div>
       </section>
-      
-      {/* Dietary Information */}
-     
     </div>
   );
 };
