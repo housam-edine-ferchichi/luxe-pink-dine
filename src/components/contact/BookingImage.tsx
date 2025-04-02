@@ -7,7 +7,7 @@ const BookingImage = () => {
     <div className="relative">
       <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
         <ImageOptimizer 
-          src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/images//Jade.png" 
+          src="https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//jade%20host.webp" 
           alt="Restaurant interior" 
           className="w-full h-full object-cover"
           loading="lazy"

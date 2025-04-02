@@ -30,7 +30,7 @@ const ContactTabs: React.FC<ContactTabsProps> = ({ activeTab, setActiveTab }) =>
               }`}
               onClick={() => setActiveTab('booking')}
             >
-              Reservation
+            Your Host Jade
             </button>
           </div>
         </div>

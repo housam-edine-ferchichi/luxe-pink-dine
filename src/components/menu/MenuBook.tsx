@@ -58,7 +58,7 @@ const MenuBook: React.FC = () => {
             <img
               src={menuPages[currentPage].image}
               alt={`Menu page ${currentPage + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </motion.div>
         </AnimatePresence>
