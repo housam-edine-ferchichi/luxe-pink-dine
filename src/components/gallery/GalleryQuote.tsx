@@ -13,8 +13,8 @@ const GalleryQuote = () => {
             We eat with our eyes first, which is why we emphasize both culinary excellence and visual beauty in every aspect of Gourmande is 50's .
           </blockquote>
           <div className="mt-6">
-            <p className="font-medium text-gray-900 dark:text-white">Chef Antoine Dubois</p>
-            <p className="text-sm text-rose-600 dark:text-rose-400">Executive Chef</p>
+            <p className="font-medium text-gray-900 dark:text-white">Jade</p>
+            <p className="text-sm text-rose-600 dark:text-rose-400">The driver behind the roulette wheel</p>
           </div>
         </div>
       </div>
