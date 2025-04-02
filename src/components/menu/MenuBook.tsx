@@ -6,27 +6,27 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const menuPages = [
   {
     id: 1,
-    image: "public/lovable-uploads/17f23997-b572-4518-8385-76094eb6b032.png",
+    image: "/lovable-uploads/17f23997-b572-4518-8385-76094eb6b032.png",
     title: "Hot & Fresh Drinks Menu"
   },
   {
     id: 2,
-    image: "public/lovable-uploads/5dbc29bc-d1ce-43f1-9ef8-08125637a91c.png",
+    image: "/lovable-uploads/5dbc29bc-d1ce-43f1-9ef8-08125637a91c.png",
     title: "Hot Drinks Menu"
   },
   {
     id: 3,
-    image: "public/lovable-uploads/0a67fe32-da76-46f8-9f29-d831e01f2df3.png",
+    image: "/lovable-uploads/0a67fe32-da76-46f8-9f29-d831e01f2df3.png",
     title: "Menu Brunch"
   },
   {
     id: 4,
-    image: "public/lovable-uploads/f4fd0fdd-7cdb-4664-bd16-abe2f532e2ba.png",
+    image: "/lovable-uploads/f4fd0fdd-7cdb-4664-bd16-abe2f532e2ba.png",
     title: "Menu: Les Bagels"
   },
   {
     id: 5,
-    image: "public/lovable-uploads/e5c85dd7-c30f-47bf-9582-ecdfea0bddc6.png",
+    image: "/lovable-uploads/e5c85dd7-c30f-47bf-9582-ecdfea0bddc6.png",
     title: "Prestations Sur Commande"
   }
 ];
