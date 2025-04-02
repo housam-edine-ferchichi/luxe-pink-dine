@@ -59,6 +59,7 @@ const MenuBook: React.FC = () => {
               src={menuPages[currentPage].image}
               alt={`Menu page ${currentPage + 1}`}
               className="max-w-full max-h-full object-cover rounded-lg"
+              style={{ maxWidth: '1024px', maxHeight: '768px', margin: 'auto' }} // Limite la résolution
             />
           </motion.div>
         </AnimatePresence>
