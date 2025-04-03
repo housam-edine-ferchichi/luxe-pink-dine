@@ -18,9 +18,9 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    // Add proper MIME type configuration
     headers: {
-      'Content-Type': 'application/javascript',
+      // Ensure proper MIME types for JavaScript modules
+      'Content-Type': 'application/javascript; charset=utf-8',
     }
   },
   build: {
