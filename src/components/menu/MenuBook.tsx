@@ -1,36 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import ImageOptimizer from '../common/ImageOptimizer';
-
-const menuPages = [
-  {
-    id: 1,
-    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//carte%20brunch.d4476e96bc4825115954.png",
-    title: "Menu Brunch"
-  },
-  {
-    id: 2,
-    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//hot%20drink%20menu.a4f764ca6cfb47878165.png",
-    title: "Hot Drinks Menu"
-  },
-  {
-    id: 3,
-    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//hot%20&%20fresh%20drink%20menu%202.330c75af97cfea499fe7.png",
-    title: "Menu Brunch"
-  },
-  {
-    id: 4,
-    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//lunch.a80d15764bf5773c4589.png",
-    title: "Menu: Les Bagels"
-  },
-  {
-    id: 5,
-    image: "https://sjdunwlftwdzeetlxpxj.supabase.co/storage/v1/object/public/gourmande//tarifs.810ffafff74e8e8736d3.png",
-    title: "Prestations Sur Commande"
-  }
-];
+import { AnimatePresence } from 'framer-motion';
+import { menuPages } from './menuData';
+import MenuPage from './MenuPage';
+import PageNavigation from './PageNavigation';
+import PageIndicators from './PageIndicators';
 
 const MenuBook: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -77,29 +51,12 @@ const MenuBook: React.FC = () => {
       setCurrentPage(prev => prev - 1);
     }
   };
-  
-  // Page turn variants
-  const pageVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      rotateY: direction > 0 ? -15 : 15,
-      boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)"
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      rotateY: 0,
-      boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)"
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      rotateY: direction < 0 ? -15 : 15,
-      boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)"
-    })
-  };
 
+  const handlePageChange = (pageIndex: number) => {
+    setDirection(pageIndex > currentPage ? 1 : -1);
+    setCurrentPage(pageIndex);
+  };
+  
   // Calculate maximum size while maintaining aspect ratio
   const getBookStyles = () => {
     const maxWidth = Math.min(1200, window.innerWidth - 40); // Max width with 20px padding on each side
@@ -143,90 +100,29 @@ const MenuBook: React.FC = () => {
         ></div>
 
         <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
+          <MenuPage 
             key={currentPage}
-            custom={direction}
-            variants={pageVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.3 },
-              rotateY: { duration: 0.5 }
-            }}
-            className="absolute inset-0 w-full h-full flex items-center justify-center bg-white dark:bg-midnight-900"
-            style={{
-              transformOrigin: direction > 0 ? "left center" : "right center",
-              boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            <ImageOptimizer
-              src={menuPages[currentPage].image}
-              alt={`Menu page ${currentPage + 1}`}
-              className="w-full h-full object-contain"
-            />
-            
-            {/* Page curl effect */}
-            <div 
-              className={`absolute ${direction >= 0 ? 'right-0' : 'left-0'} top-0 bottom-0 w-16 pointer-events-none`}
-              style={{
-                background: `linear-gradient(${direction >= 0 ? 'to left' : 'to right'}, rgba(0,0,0,0.05), rgba(0,0,0,0))`,
-              }}
-            ></div>
-          </motion.div>
+            image={menuPages[currentPage].image}
+            alt={`Menu page ${currentPage + 1}`}
+            direction={direction}
+          />
         </AnimatePresence>
 
         {/* Page indicators */}
-        <div className="absolute bottom-4 inset-x-0 flex justify-center gap-2 z-20">
-          {menuPages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                setDirection(idx > currentPage ? 1 : -1);
-                setCurrentPage(idx);
-              }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentPage === idx 
-                  ? 'bg-rose-500 scale-125' 
-                  : 'bg-gray-300 dark:bg-gray-600'
-              }`}
-              aria-label={`Go to page ${idx + 1}`}
-            />
-          ))}
-        </div>
+        <PageIndicators 
+          pages={menuPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
 
-      {/* Navigation Buttons - Outside the book for cleaner look */}
-      <div className="flex justify-center gap-8 mt-6">
-        <button
-          onClick={prevPage}
-          disabled={currentPage === 0}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-midnight-800/90 shadow-lg backdrop-blur-sm transition-all
-            ${currentPage === 0 
-              ? 'opacity-50 cursor-not-allowed' 
-              : 'hover:bg-white hover:scale-105 hover:shadow-xl'
-            }`}
-          aria-label="Previous page"
-        >
-          <ChevronLeft className="w-5 h-5 text-gray-800 dark:text-gray-200" />
-          <span className="text-sm font-medium text-gray-800 dark:text-gray-200">Previous</span>
-        </button>
-        
-        <button
-          onClick={nextPage}
-          disabled={currentPage === menuPages.length - 1}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-midnight-800/90 shadow-lg backdrop-blur-sm transition-all
-            ${currentPage === menuPages.length - 1 
-              ? 'opacity-50 cursor-not-allowed' 
-              : 'hover:bg-white hover:scale-105 hover:shadow-xl'
-            }`}
-          aria-label="Next page"
-        >
-          <span className="text-sm font-medium text-gray-800 dark:text-gray-200">Next</span>
-          <ChevronRight className="w-5 h-5 text-gray-800 dark:text-gray-200" />
-        </button>
-      </div>
+      {/* Navigation Buttons */}
+      <PageNavigation 
+        currentPage={currentPage}
+        totalPages={menuPages.length}
+        onPrevPage={prevPage}
+        onNextPage={nextPage}
+      />
 
       {/* Current page info */}
       <div className="mt-4 text-center">
