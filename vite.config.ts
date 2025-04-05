@@ -2,14 +2,12 @@
 import { defineConfig } from "vite";
 import path from "path";
 import react from '@vitejs/plugin-react';
-import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "./",
+  base: "./", // This ensures GitHub Pages compatibility
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -19,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     headers: {
-      // Ensure proper MIME types for JavaScript modules
+      // Ensure proper MIME types for JavaScript modules for Chrome
       'Content-Type': 'application/javascript; charset=utf-8',
     }
   },

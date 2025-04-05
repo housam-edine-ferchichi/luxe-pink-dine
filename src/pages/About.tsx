@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import AnimatedFoodSketch from '../components/common/AnimatedFoodSketch';
 import AboutHero from '../components/about/AboutHero';
-import JourneyTimeline from '../components/about/JourneyTimeline';
 
 const About = () => {
   useEffect(() => {
@@ -15,9 +14,6 @@ const About = () => {
       
       {/* About Hero Section */}
       <AboutHero />
-      
-      {/* Our Journey Timeline */}
-      <JourneyTimeline />
     </div>
   );
 };

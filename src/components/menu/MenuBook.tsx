@@ -134,12 +134,6 @@ const MenuBook: React.FC = () => {
           boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 0, 0, 0.1) inset"
         }}
       >
-        {/* Book binding decoration */}
-        <div 
-          className="absolute left-1/2 top-0 bottom-0 w-4 -ml-2 bg-gradient-to-r from-rose-800 to-rose-600 z-10"
-          style={{ boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)" }}
-        ></div>
-        
         {/* Book cover texture overlay */}
         <div 
           className="absolute inset-0 bg-rose-50 dark:bg-midnight-800 opacity-10 pointer-events-none z-0"
