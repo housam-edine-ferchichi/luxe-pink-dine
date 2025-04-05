@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 
 // Testimonial data
 const testimonials = [
@@ -103,12 +103,15 @@ const TestimonialsSection: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            <Link to="/testimonials" className="inline-flex items-center text-rose-500 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 font-medium transition-colors">
+            <a 
+              href="https://www.google.com/search?client=safari&sca_esv=c9bece44728e7380&hl=fr-fr&cs=0&biw=2560&bih=1264&si=APYL9bs7Hg2KMLB-4tSoTdxuOx8BdRvHbByC_AuVpNyh0x2KzezmKD6On2HnTrwnEOVCvm6igg1zzvsclJ6_zf_N1_Lzbo-jUHrUJypEpovjFy98XByoDLqD80E7AOqW1dNR4za6oTW_cN9da97yl1ELE7lB3zRD5w%3D%3D&q=Gourmande+is+50%E2%80%99s+Avis&sa=X&ved=2ahUKEwi71Meu_sCMAxXb2wIHHewMFyUQ0bkNegQIJhAE&cshid=1743859366819561" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-rose-500 dark:text-rose-400 hover:text-rose-600 dark:hover:text-rose-300 font-medium transition-colors"
+            >
               <span>View all reviews</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            </Link>
+              <ExternalLink className="h-4 w-4 ml-1" />
+            </a>
           </motion.div>
         </div>
       </div>
