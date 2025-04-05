@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -16,7 +17,7 @@ jobs:
       - run: npm install
       - run: npm install @vitejs/plugin-react --save-dev
       - run: npm run build
-      - run: mkdir public && cp -r dist/* public/
+      - run: mkdir -p public && cp -r dist/* public/
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -17,7 +17,6 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     headers: {
-      // Ensure proper MIME types for JavaScript modules for Chrome
       'Content-Type': 'application/javascript; charset=utf-8',
     }
   },
@@ -33,6 +32,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           vendor: ["react", "react-dom"],
         },
+        format: 'es', // Ensure ESM output format
       },
     },
   },
